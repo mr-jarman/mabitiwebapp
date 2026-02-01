@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Maibiti | Modern Luxury Listing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#2563eb",
+            "primary-glow": "#3b82f6",
+            "dark-base": "#0a0a0a",
+          },
+          fontFamily: {
+            "display": ["Inter", "sans-serif"]
+          }
+        },
+      },
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .glass-panel {
+        @apply bg-zinc-950/70 backdrop-blur-2xl border border-white/10 shadow-xl;
+      }
+      .glass-input {
+        @apply bg-black/40 border border-white/10 text-white placeholder-zinc-500 focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all;
+      }
+      .text-glow {
+        text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+      }
+      .ai-card-glow {
+        @apply shadow-[0_0_20px_-5px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_-5px_rgba(59,130,246,0.5)] transition-shadow duration-300;
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .material-symbols-outlined.filled {
+        font-variation-settings: 'FILL' 1;
+      }
+    }
+    
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a0a0a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #27272a;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #3f3f46;
+    }
+    
+    /* Liquid Glass Component Variables */
+    /* Liquid Glass Component Variables */
+    :root {
+      --lg-text: #000000;
+      --lg-bg-color: rgba(255, 255, 255, 0.4);
+      --lg-highlight: rgba(0, 0, 0, 0.05);
+    }
+    :root.dark {
+      --lg-text: #ffffff;
+      --lg-bg-color: rgba(0, 0, 0, 0.4);
+      --lg-highlight: rgba(255, 255, 255, 0.15);
+    }
+  </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.38.0"
+  }
+}
+</script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+
+<body
+  class="bg-zinc-50 dark:bg-dark-base text-zinc-900 dark:text-zinc-100 font-display min-h-screen selection:bg-primary selection:text-white overflow-x-hidden antialiased transition-colors duration-300">
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+
+</html>

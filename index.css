@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.aurora-container {
+  mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+}
+
+/* Global Smooth Transition for Theme Switch */
+body,
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+button,
+a,
+input,
+textarea,
+svg,
+path {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Exclude transform transitions if not needed to avoid jank, 
+   or handle them separately if specific components need them. 
+   Using 'all' can be expensive. */
+
+/* Animated Gradient for Login Button */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}

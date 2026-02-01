@@ -1,0 +1,522 @@
+{
+    "properties": [
+        {
+            "id": "prop-001",
+            "title": "Modern Mission District Residence",
+            "address": "123 Mission St, Unit 4B, San Francisco, CA 94103",
+            "price": 1250000,
+            "beds": 2,
+            "baths": 2,
+            "sqft": 1250,
+            "built": 2018,
+            "description": "Experience modern luxury in the heart of the Mission District. This stunning 2-bedroom residence features an open-concept living area bathed in natural light, boasting floor-to-ceiling windows with panoramic city views. The chef's kitchen is equipped with top-of-the-line Viking appliances, custom cabinetry, and a spacious quartz island perfect for entertaining. The primary suite offers a serene retreat with a spa-like ensuite bath featuring a soaking tub and rainfall shower.",
+            "images": {
+                "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "living": "https://media.istockphoto.com/id/1990444472/fr/photo/int%C3%A9rieur-de-salon-confortable-de-style-scandinave.jpg?s=612x612&w=0&k=20&c=udrGp53zy58mlykhXvw09wx_PEaQq1GkRsK2XhZz7ec=",
+                "kitchen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpXZQumPTRWiZIVx3rraoFreo8DZHUW0z8cg&s",
+                "bedroom": "https://i.pinimg.com/736x/e5/d5/4a/e5d54afbd5f91a27ca26bc5583903bbc.jpg",
+                "bathroom": "https://tse2.mm.bing.net/th/id/OIP.eI3q-29CL4xQIebzbCPYyAHaE7?rs=1&pid=ImgDetMain&o=7&rm=3",
+                "balcony": "https://ultraoutdoors.com/wp-content/uploads/2023/03/Beautiful-modern-balcony-with-high-rise-view-of-the-city-728x409.jpg",
+                "map": "https://lh3.googleusercontent.com/aida-public/AB6AXuAHtAR_BO8YoU3Vv0UZoupIbnk8YWuZcDHevjBwc0Gxxsd4MACBpES_bOwVUTVlFnDfF5ywaMtCkPuN6CzwgqBxFY7bZczUqTOeX-HCIdE2h_fwLB2rqxAKPlNNLDgDTtABFXr1KIZWu7EW8_oLD8PJlCUQwfFhBRpncHOtArtWDMKhGo-iDhD9aIQl3feJfewXWNUmBQz1YifkDp22UmROIMQlgxSZ0RE8ruBsXgbTfCq1eSY8B1iaREpVoil26ksMU6xmhWl1h946"
+            },
+            "agent": {
+                "name": "Sarah Mitchell",
+                "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBZkelqYuu7Vd3Pvs6oIS3SBwx7MDAgr6ZM2GxnD49Ho1RPQ3JWhWj-e-6Nd4eFuPDXzwFkWnuDdSlcv-JX55rRfIUOKXtcKnoXgBfV-FdTaYCD7QrrcR-R3r35fWZ0z9rEimmwnAC-1W5eaBiG6LDSZPxDJBVZ3_h9-cjRmlwFQERqE9JPwf1InNtD7NfKwtMkrFsR81_1lsoY3J3UDlEkzwaEMSqSHPW4TUa3SzY-Ai7USJ8Bx-zFkex0OiqCn3b_JtoUt3eNi1cx",
+                "phone": "+1 (415) 555-0123",
+                "email": "sarah.mitchell@mabiti.com"
+            },
+            "neighborhood": "San Francisco Mission District",
+            "features": [
+                "Floor-to-ceiling windows",
+                "Open-concept living",
+                "Viking appliances",
+                "Quartz countertops",
+                "Spa-like bathroom",
+                "In-unit laundry",
+                "Parking included",
+                "Pet friendly"
+            ]
+        },
+        {
+            "id": "prop-002",
+            "title": "Luxury Pacific Heights Penthouse",
+            "address": "789 Pacific Ave, Penthouse A, San Francisco, CA 94133",
+            "price": 3850000,
+            "beds": 3,
+            "baths": 3,
+            "sqft": 2400,
+            "built": 2020,
+            "description": "Spectacular penthouse living awaits in this architectural masterpiece. Soaring 12-foot ceilings, floor-to-ceiling windows, and two private terraces offer breathtaking views of the Golden Gate Bridge and Bay. The gourmet kitchen features premium Miele appliances, Italian marble countertops, and custom millwork throughout.",
+            "images": {
+                "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "living": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "kitchen": "https://lh3.googleusercontent.com/aida-public/AB6AXuC87drBYFrXMP0TfDOJxao5cRDj0d-CI4TavgOs8bGybDwDCJNYtF2HX1pXc0vH808xW2xShBJYAHCrVwnzHkVjg9wORNav0y_LuzV_REryCMH80RJiZmHFXuXfIPDLlLXFsOvagrJnZgKsxB1hiJc3XHPi5rm3nxxQXBYRGnSCsQVS_WJFcc1IBR-613K8E1Gi4egORWjHwI-14U3PFAEMsrdu8m3WFIdJ03eYEWxl_CAswqPbxzgl2mr1iomB9_ZG6e0k8tjhM_G4",
+                "bedroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCI3anFlWcLO2z6FbVodODyeFl9EPJylBHMz1lVyKq63CRd8spI0Fl6ba6zy2KHJHVwOu1cvBPilGkhohqPNTXlk2mc3KHmflvo3GdPEyQEnps50F-aNb1K4YNkXYK0ivXs0sf_2SkBf7uAJMFS0wvwkh0fJh2KyNVxIxjQDZ5daGcGasqEh_Mnzso6Orb-pd21pUct8xXrpBXbyuzZf2nHN19wpojRmjqiNoaELu75nWyWxBzE0BHJMIAxW6WZWqbq72J3J1Iw7jgn",
+                "bathroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCqzvo0AAYdW49IohLQo3vWbblLjZDeDLuNfDFzzvKOtepkmf9mCXSliSW2BRHKZnDt0FCfJLCacNJK6J0bUGdiY_RgaWp5zToszDwytxa7sOGJ7Brx96RP1Krms1bVoLvbRL09IVDDDNp-nfIsnz1Y51MHBhEB8V_0KK_NUkKJ7UHpBQlfVZ6vfOdfU5uXBYaHr0ZHAxRnqSjGQNbngOwyUaL_twKSkQgiFiX2UMx67hUpOWY_6rfUaUC4gSMOcUt0IGLBcwHTFGYr",
+                "balcony": "https://lh3.googleusercontent.com/aida-public/AB6AXuBdywDPQExYrja5Lhh4UKrOgwYJaXcQUH08CorKx-Rwv6-uFJbOVthFErua2eIxSjmbPEwWPrO74Ej5d5SvrsGBz884ro8PRc5CFAWlpgcxF1_9SdhC9gEN2MTBt35J2IhbaGj8CkHSrH9wrBHrgtBhaoEVUs91QE_Ix-JT-vPiaa7T3FIYbI5ETTBuVbeVWVLU3zlkpbY7obZ4S2JIiHy1TC-kNpnppVJtrlFqYE5FNciJKklnUrfy283CVMPJWmM8QUA5zpGnFoRw",
+                "map": "https://lh3.googleusercontent.com/aida-public/AB6AXuAHtAR_BO8YoU3Vv0UZoupIbnk8YWuZcDHevjBwc0Gxxsd4MACBpES_bOwVUTVlFnDfF5ywaMtCkPuN6CzwgqBxFY7bZczUqTOeX-HCIdE2h_fwLB2rqxAKPlNNLDgDTtABFXr1KIZWu7EW8_oLD8PJlCUQwfFhBRpncHOtArtWDMKhGo-iDhD9aIQl3feJfewXWNUmBQz1YifkDp22UmROIMQlgxSZ0RE8ruBsXgbTfCq1eSY8B1iaREpVoil26ksMU6xmhWl1h946"
+            },
+            "agent": {
+                "name": "Michael Chen",
+                "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBZkelqYuu7Vd3Pvs6oIS3SBwx7MDAgr6ZM2GxnD49Ho1RPQ3JWhWj-e-6Nd4eFuPDXzwFkWnuDdSlcv-JX55rRfIUOKXtcKnoXgBfV-FdTaYCD7QrrcR-R3r35fWZ0z9rEimmwnAC-1W5eaBiG6LDSZPxDJBVZ3_h9-cjRmlwFQERqE9JPwf1InNtD7NfKwtMkrFsR81_1lsoY3J3UDlEkzwaEMSqSHPW4TUa3SzY-Ai7USJ8Bx-zFkex0OiqCn3b_JtoUt3eNi1cx",
+                "phone": "+1 (415) 555-0456",
+                "email": "michael.chen@mabiti.com"
+            },
+            "neighborhood": "San Francisco Pacific Heights",
+            "features": [
+                "12-foot ceilings",
+                "Private terraces",
+                "Golden Gate views",
+                "Miele appliances",
+                "Italian marble",
+                "Smart home system",
+                "2-car parking",
+                "Building concierge"
+            ]
+        },
+        {
+            "id": "prop-003",
+            "title": "Charming Victorian in Noe Valley",
+            "address": "456 Sanchez St, San Francisco, CA 94114",
+            "price": 2100000,
+            "beds": 3,
+            "baths": 2,
+            "sqft": 1800,
+            "built": 1905,
+            "description": "Meticulously restored Victorian gem in the heart of Noe Valley. This classic beauty combines original period details with modern amenities. High ceilings, original hardwood floors, and ornate crown molding throughout. Updated kitchen and baths while preserving the home's historic charm.",
+            "images": {
+                "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "living": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "kitchen": "https://lh3.googleusercontent.com/aida-public/AB6AXuC87drBYFrXMP0TfDOJxao5cRDj0d-CI4TavgOs8bGybDwDCJNYtF2HX1pXc0vH808xW2xShBJYAHCrVwnzHkVjg9wORNav0y_LuzV_REryCMH80RJiZmHFXuXfIPDLlLXFsOvagrJnZgKsxB1hiJc3XHPi5rm3nxxQXBYRGnSCsQVS_WJFcc1IBR-613K8E1Gi4egORWjHwI-14U3PFAEMsrdu8m3WFIdJ03eYEWxl_CAswqPbxzgl2mr1iomB9_ZG6e0k8tjhM_G4",
+                "bedroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCI3anFlWcLO2z6FbVodODyeFl9EPJylBHMz1lVyKq63CRd8spI0Fl6ba6zy2KHJHVwOu1cvBPilGkhohqPNTXlk2mc3KHmflvo3GdPEyQEnps50F-aNb1K4YNkXYK0ivXs0sf_2SkBf7uAJMFS0wvwkh0fJh2KyNVxIxjQDZ5daGcGasqEh_Mnzso6Orb-pd21pUct8xXrpBXbyuzZf2nHN19wpojRmjqiNoaELu75nWyWxBzE0BHJMIAxW6WZWqbq72J3J1Iw7jgn",
+                "bathroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCqzvo0AAYdW49IohLQo3vWbblLjZDeDLuNfDFzzvKOtepkmf9mCXSliSW2BRHKZnDt0FCfJLCacNJK6J0bUGdiY_RgaWp5zToszDwytxa7sOGJ7Brx96RP1Krms1bVoLvbRL09IVDDDNp-nfIsnz1Y51MHBhEB8V_0KK_NUkKJ7UHpBQlfVZ6vfOdfU5uXBYaHr0ZHAxRnqSjGQNbngOwyUaL_twKSkQgiFiX2UMx67hUpOWY_6rfUaUC4gSMOcUt0IGLBcwHTFGYr",
+                "balcony": "https://lh3.googleusercontent.com/aida-public/AB6AXuBdywDPQExYrja5Lhh4UKrOgwYJaXcQUH08CorKx-Rwv6-uFJbOVthFErua2eIxSjmbPEwWPrO74Ej5d5SvrsGBz884ro8PRc5CFAWlpgcxF1_9SdhC9gEN2MTBt35J2IhbaGj8CkHSrH9wrBHrgtBhaoEVUs91QE_Ix-JT-vPiaa7T3FIYbI5ETTBuVbeVWVLU3zlkpbY7obZ4S2JIiHy1TC-kNpnppVJtrlFqYE5FNciJKklnUrfy283CVMPJWmM8QUA5zpGnFoRw",
+                "map": "https://lh3.googleusercontent.com/aida-public/AB6AXuAHtAR_BO8YoU3Vv0UZoupIbnk8YWuZcDHevjBwc0Gxxsd4MACBpES_bOwVUTVlFnDfF5ywaMtCkPuN6CzwgqBxFY7bZczUqTOeX-HCIdE2h_fwLB2rqxAKPlNNLDgDTtABFXr1KIZWu7EW8_oLD8PJlCUQwfFhBRpncHOtArtWDMKhGo-iDhD9aIQl3feJfewXWNUmBQz1YifkDp22UmROIMQlgxSZ0RE8ruBsXgbTfCq1eSY8B1iaREpVoil26ksMU6xmhWl1h946"
+            },
+            "agent": {
+                "name": "Emma Rodriguez",
+                "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBZkelqYuu7Vd3Pvs6oIS3SBwx7MDAgr6ZM2GxnD49Ho1RPQ3JWhWj-e-6Nd4eFuPDXzwFkWnuDdSlcv-JX55rRfIUOKXtcKnoXgBfV-FdTaYCD7QrrcR-R3r35fWZ0z9rEimmwnAC-1W5eaBiG6LDSZPxDJBVZ3_h9-cjRmlwFQERqE9JPwf1InNtD7NfKwtMkrFsR81_1lsoY3J3UDlEkzwaEMSqSHPW4TUa3SzY-Ai7USJ8Bx-zFkex0OiqCn3b_JtoUt3eNi1cx",
+                "phone": "+1 (415) 555-0789",
+                "email": "emma.rodriguez@mabiti.com"
+            },
+            "neighborhood": "San Francisco Noe Valley",
+            "features": [
+                "Original hardwood floors",
+                "Period details",
+                "Updated kitchen",
+                "Private garden",
+                "Walk to amenities",
+                "Vintage charm",
+                "Modern systems",
+                "Quiet street"
+            ]
+        },
+        {
+            "id": "prop-004",
+            "title": "Industrial Loft in SoMa",
+            "address": "222 Brannan St, Unit 501, San Francisco, CA 94107",
+            "price": 1450000,
+            "beds": 1,
+            "baths": 1,
+            "sqft": 1100,
+            "built": 2015,
+            "description": "True loft living in a converted warehouse. This 5th-floor unit features original brick walls, exposed timber beams, and dramatic concrete floors. The open-plan layout is perfect for artists or professionals seeking a creative space.",
+            "images": {
+                "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "living": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "kitchen": "https://lh3.googleusercontent.com/aida-public/AB6AXuC87drBYFrXMP0TfDOJxao5cRDj0d-CI4TavgOs8bGybDwDCJNYtF2HX1pXc0vH808xW2xShBJYAHCrVwnzHkVjg9wORNav0y_LuzV_REryCMH80RJiZmHFXuXfIPDLlLXFsOvagrJnZgKsxB1hiJc3XHPi5rm3nxxQXBYRGnSCsQVS_WJFcc1IBR-613K8E1Gi4egORWjHwI-14U3PFAEMsrdu8m3WFIdJ03eYEWxl_CAswqPbxzgl2mr1iomB9_ZG6e0k8tjhM_G4",
+                "bedroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCI3anFlWcLO2z6FbVodODyeFl9EPJylBHMz1lVyKq63CRd8spI0Fl6ba6zy2KHJHVwOu1cvBPilGkhohqPNTXlk2mc3KHmflvo3GdPEyQEnps50F-aNb1K4YNkXYK0ivXs0sf_2SkBf7uAJMFS0wvwkh0fJh2KyNVxIxjQDZ5daGcGasqEh_Mnzso6Orb-pd21pUct8xXrpBXbyuzZf2nHN19wpojRmjqiNoaELu75nWyWxBzE0BHJMIAxW6WZWqbq72J3J1Iw7jgn",
+                "bathroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCqzvo0AAYdW49IohLQo3vWbblLjZDeDLuNfDFzzvKOtepkmf9mCXSliSW2BRHKZnDt0FCfJLCacNJK6J0bUGdiY_RgaWp5zToszDwytxa7sOGJ7Brx96RP1Krms1bVoLvbRL09IVDDDNp-nfIsnz1Y51MHBhEB8V_0KK_NUkKJ7UHpBQlfVZ6vfOdfU5uXBYaHr0ZHAxRnqSjGQNbngOwyUaL_twKSkQgiFiX2UMx67hUpOWY_6rfUaUC4gSMOcUt0IGLBcwHTFGYr",
+                "balcony": "https://lh3.googleusercontent.com/aida-public/AB6AXuBdywDPQExYrja5Lhh4UKrOgwYJaXcQUH08CorKx-Rwv6-uFJbOVthFErua2eIxSjmbPEwWPrO74Ej5d5SvrsGBz884ro8PRc5CFAWlpgcxF1_9SdhC9gEN2MTBt35J2IhbaGj8CkHSrH9wrBHrgtBhaoEVUs91QE_Ix-JT-vPiaa7T3FIYbI5ETTBuVbeVWVLU3zlkpbY7obZ4S2JIiHy1TC-kNpnppVJtrlFqYE5FNciJKklnUrfy283CVMPJWmM8QUA5zpGnFoRw",
+                "map": "https://lh3.googleusercontent.com/aida-public/AB6AXuAHtAR_BO8YoU3Vv0UZoupIbnk8YWuZcDHevjBwc0Gxxsd4MACBpES_bOwVUTVlFnDfF5ywaMtCkPuN6CzwgqBxFY7bZczUqTOeX-HCIdE2h_fwLB2rqxAKPlNNLDgDTtABFXr1KIZWu7EW8_oLD8PJLcUQwfFhBRpncHOtArtWDMKhGo-iDhD9aIQl3feJfewXWNUmBQz1YifkDp22UmROIMQlgxSZ0RE8ruBsXgbTfCq1eSY8B1iaREpVoil26ksMU6xmhWl1h946"
+            },
+            "agent": {
+                "name": "Sarah Mitchell",
+                "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBZkelqYuu7Vd3Pvs6oIS3SBwx7MDAgr6ZM2GxnD49Ho1RPQ3JWhWj-e-6Nd4eFuPDXzwFkWnuDdSlcv-JX55rRfIUOKXtcKnoXgBfV-FdTaYCD7QrrcR-R3r35fWZ0z9rEimmwnAC-1W5eaBiG6LDSZPxDJBVZ3_h9-cjRmlwFQERqE9JPwf1InNtD7NfKwtMkrFsR81_1lsoY3J3UDlEkzwaEMSqSHPW4TUa3SzY-Ai7USJ8Bx-zFkex0OiqCn3b_JtoUt3eNi1cx",
+                "phone": "+1 (415) 555-0123",
+                "email": "sarah.mitchell@mabiti.com"
+            },
+            "neighborhood": "San Francisco SoMa",
+            "features": [
+                "Exposed brick",
+                "Industrial timber beams",
+                "Concrete floors",
+                "High ceilings",
+                "Designer lighting",
+                "Roof deck access",
+                "Bike storage",
+                "Gym on site"
+            ]
+        },
+        {
+            "id": "prop-005",
+            "title": "Waterfront Condo at Lumina",
+            "address": "201 Folsom St, San Francisco, CA 94105",
+            "price": 4200,
+            "beds": 1,
+            "baths": 1,
+            "sqft": 850,
+            "built": 2016,
+            "description": "Luxurious high-rise living at Lumina. This waterfront-facing unit offers world-class amenities and unparalleled finishes. Enjoy access to a residents' lounge, rooftop terrace with BBQ area, and a state-of-the-art fitness center.",
+            "images": {
+                "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "living": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "kitchen": "https://lh3.googleusercontent.com/aida-public/AB6AXuC87drBYFrXMP0TfDOJxao5cRDj0d-CI4TavgOs8bGybDCJNYtF2HX1pXc0vH808xW2xShBJYAHCrVwnzHkVjg9wORNav0y_LuzV_REryCMH80RJiZmHFXuXfIPDLlLXFsOvagrJnZgKsxB1hiJc3XHPi5rm3nxxQXBYRGnSCsQVS_WJFcc1IBR-613K8E1Gi4egORWjHwI-14U3PFAEMsrdu8m3WFIdJ03eYEWxl_CAswqPbxzgl2mr1iomB9_ZG6e0k8tjhM_G4",
+                "bedroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCI3anFlWcLO2z6FbVodODyeFl9EPJylBHMz1lVyKq63CRd8spI0Fl6ba6zy2KHJHVwOu1cvBPilGkhohqPNTXlk2mc3KHmflvo3GdPEyQEnps50F-aNb1K4YNkXYK0ivXs0sf_2SkBf7uAJMFS0wvwkh0fJh2KyNVxIxjQDZ5daGcGasqEh_Mnzso6Orb-pd21pUct8xXrpBXbyuzZf2nHN19wpojRmjqiNoaELu75nWyWxBzE0BHJMIAxW6WZWqbq72J3J1Iw7jgn",
+                "bathroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCqzvo0AAYdW49IohLQo3vWbblLjZDeDLuNfDFzzvKOtepkmf9mCXSliSW2BRHKZnDt0FCfJLCacNJK6J0bUGdiY_RgaWp5zToszDwytxa7sOGJ7Brx96RP1Krms1bVoLvbRL09IVDDDNp-nfIsnz1Y51MHBhEB8V_0KK_NUkKJ7UHpBQlfVZ6vfOdfU5uXBYaHr0ZHAxRnqSjGQNbngOwyUaL_twKSkQgiFiX2UMx67hUpOWY_6rfUaUC4gSMOcUt0IGLBcwHTFGYr",
+                "balcony": "https://lh3.googleusercontent.com/aida-public/AB6AXuBdywDPQExYrja5Lhh4UKrOgwYJaXcQUH08CorKx-Rwv6-uFJbOVthFErua2eIxSjmbPEwWPrO74Ej5d5SvrsGBz884ro8PRc5CFAWlpgcxF1_9SdhC9gEN2MTBt35J2IhbaGj8CkHSrH9wrBHrgtBhaoEVUs91QE_Ix-JT-vPiaa7T3FIYbI5ETTBuVbeVWVLU3zlkpbY7obZ4S2JIiHy1TC-kNpnppVJtrlFqYE5FNciJKklnUrfy283CVMPJWmM8QUA5zpGnFoRw",
+                "map": "https://lh3.googleusercontent.com/aida-public/AB6AXuAHtAR_BO8YoU3Vv0UZoupIbnk8YWuZcDHevjBwc0Gxxsd4MACBpES_bOwVUTVlFnDfF5ywaMtCkPuN6CzwgqBxFY7bZczUqTOeX-HCIdE2h_fwLB2rqxAKPlNNLDgDTtABFXr1KIZWu7EW8_oLD8PJLcUQwfFhBRpncHOtArtWDMKhGo-iDhD9aIQl3feJfewXWNUmBQz1YifkDp22UmROIMQlgxSZ0RE8ruBsXgbTfCq1eSY8B1iaREpVoil26ksMU6xmhWl1h946"
+            },
+            "agent": {
+                "name": "Michael Chen",
+                "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBZkelqYuu7Vd3Pvs6oIS3SBwx7MDAgr6ZM2GxnD49Ho1RPQ3JWhWj-e-6Nd4eFuPDXzwFkWnuDdSlcv-JX55rRfIUOKXtcKnoXgBfV-FdTaYCD7QrrcR-R3r35fWZ0z9rEimmwnAC-1W5eaBiG6LDSZPxDJBVZ3_h9-cjRmlwFQERqE9JPwf1InNtD7NfKwtMkrFsR81_1lsoY3J3UDlEkzwaEMSqSHPW4TUa3SzY-Ai7USJ8Bx-zFkex0OiqCn3b_JtoUt3eNi1cx",
+                "phone": "+1 (415) 555-0456",
+                "email": "michael.chen@mabiti.com"
+            },
+            "neighborhood": "San Francisco Rincon Hill",
+            "features": [
+                "Water views",
+                "Floor-to-ceiling windows",
+                "Gaggenau appliances",
+                "24/7 concierge",
+                "Valet parking",
+                "Spa and fitness center",
+                "Resident library",
+                "Indoor pool"
+            ]
+        },
+        {
+            "id": "prop-006",
+            "title": "Classic Haight-Ashbury Flat",
+            "address": "1500 Page St, San Francisco, CA 94117",
+            "price": 5500,
+            "beds": 2,
+            "baths": 1,
+            "sqft": 1300,
+            "built": 1912,
+            "description": "Charming Edwardian flat with original architectural details. Rent this piece of San Francisco history featuring high ceilings, pocket doors, and a decorative fireplace. Just steps from the Panhandle and Golden Gate Park.",
+            "images": {
+                "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "living": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "kitchen": "https://lh3.googleusercontent.com/aida-public/AB6AXuC87drBYFrXMP0TfDOJxao5cRDj0d-CI4TavgOs8bGybDwDCJNYtF2HX1pXc0vH808xW2xShBJYAHCrVwnzHkVjg9wORNav0y_LuzV_REryCMH80RJiZmHFXuXfIPDLlLXFsOvagrJnZgKsxB1hiJc3XHPi5rm3nxxQXBYRGnSCsQVS_WJFcc1IBR-613K8E1Gi4egORWjHwI-14U3PFAEMsrdu8m3WFIdJ03eYEWxl_CAswqPbxzgl2mr1iomB9_ZG6e0k8tjhM_G4",
+                "bedroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCI3anFlWcLO2z6FbVodODyeFl9EPJylBHMz1lVyKq63CRd8spI0Fl6ba6zy2KHJHVwOu1cvBPilGkhohqPNTXlk2mc3KHmflvo3GdPEyQEnps50F-aNb1K4YNkXYK0ivXs0sf_2SkBf7uAJMFS0wvwkh0fJh2KyNVxIxjQDZ5daGcGasqEh_Mnzso6Orb-pd21pUct8xXrpBXbyuzZf2nHN19wpojRmjqiNoaELu75nWyWxBzE0BHJMIAxW6WZWqbq72J3J1Iw7jgn",
+                "bathroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCqzvo0AAYdW49IohLQo3vWbblLjZDeDLuNfDFzzvKOtepkmf9mCXSliSW2BRHKZnDt0FCfJLCacNJK6J0bUGdiY_RgaWp5zToszDwytxa7sOGJ7Brx96RP1Krms1bVoLvbRL09IVDDDNp-nfIsnz1Y51MHBhEB8V_0KK_NUkKJ7UHpBQlfVZ6vfOdfU5uXBYaHr0ZHAxRnqSjGQNbngOwyUaL_twKSkQgiFiX2UMx67hUpOWY_6rfUaUC4gSMOcUt0IGLBcwHTFGYr",
+                "balcony": "https://lh3.googleusercontent.com/aida-public/AB6AXuBdywDPQExYrja5Lhh4UKrOgwYJaXcQUH08CorKx-Rwv6-uFJbOVthFErua2eIxSjmbPEwWPrO74Ej5d5SvrsGBz884ro8PRc5CFAWlpgcxF1_9SdhC9gEN2MTBt35J2IhbaGj8CkHSrH9wrBHrgtBhaoEVUs91QE_Ix-JT-vPiaa7T3FIYbI5ETTBuVbeVWVLU3zlkpbY7obZ4S2JIiHy1TC-kNpnppVJtrlFqYE5FNciJKklnUrfy283CVMPJWmM8QUA5zpGnFoRw",
+                "map": "https://lh3.googleusercontent.com/aida-public/AB6AXuAHtAR_BO8YoU3Vv0UZoupIbnk8YWuZcDHevjBwc0Gxxsd4MACBpES_bOwVUTVlFnDfF5ywaMtCkPuN6CzwgqBxFY7bZczUqTOeX-HCIdE2h_fwLB2rqxAKPlNNLDgDTtABFXr1KIZWu7EW8_oLD8PJLcUQwfFhBRpncHOtArtWDMKhGo-iDhD9aIQl3feJfewXWNUmBQz1YifkDp22UmROIMQlgxSZ0RE8ruBsXgbTfCq1eSY8B1iaREpVoil26ksMU6xmhWl1h946"
+            },
+            "agent": {
+                "name": "Emma Rodriguez",
+                "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBZkelqYuu7Vd3Pvs6oIS3SBwx7MDAgr6ZM2GxnD49Ho1RPQ3JWhWj-e-6Nd4eFuPDXzwFkWnuDdSlcv-JX55rRfIUOKXtcKnoXgBfV-FdTaYCD7QrrcR-R3r35fWZ0z9rEimmwnAC-1W5eaBiG6LDSZPxDJBVZ3_h9-cjRmlwFQERqE9JPwf1InNtD7NfKwtMkrFsR81_1lsoY3J3UDlEkzwaEMSqSHPW4TUa3SzY-Ai7USJ8Bx-zFkex0OiqCn3b_JtoUt3eNi1cx",
+                "phone": "+1 (415) 555-0789",
+                "email": "emma.rodriguez@mabiti.com"
+            },
+            "neighborhood": "Haight-Ashbury",
+            "features": [
+                "Edwardian details",
+                "High ceilings",
+                "Pocket doors",
+                "Decorative fireplace",
+                "Gourmet kitchen",
+                "Shared garden",
+                "Storage space",
+                "Near Golden Gate Park"
+            ]
+        },
+        {
+            "id": "prop-007",
+            "title": "Modernist View Home in Twin Peaks",
+            "address": "100 Panorama Dr, San Francisco, CA 94131",
+            "price": 3200000,
+            "beds": 4,
+            "baths": 3.5,
+            "sqft": 3100,
+            "built": 2022,
+            "description": "Perched on Twin Peaks, this modernist masterpiece offers 270-degree views of the City, Bay, and Ocean. Multi-level living with floor-to-ceiling glass, a dedicated media room, and a wrap-around deck.",
+            "images": {
+                "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "living": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "kitchen": "https://lh3.googleusercontent.com/aida-public/AB6AXuC87drBYFrXMP0TfDOJxao5cRDj0d-CI4TavgOs8bGybDwDCJNYtF2HX1pXc0vH808xW2xShBJYAHCrVwnzHkVjg9wORNav0y_LuzV_REryCMH80RJiZmHFXuXfIPDLlLXFsOvagrJnZgKsxB1hiJc3XHPi5rm3nxxQXBYRGnSCsQVS_WJFcc1IBR-613K8E1Gi4egORWjHwI-14U3PFAEMsrdu8m3WFIdJ03eYEWxl_CAswqPbxzgl2mr1iomB9_ZG6e0k8tjhM_G4",
+                "bedroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCI3anFlWcLO2z6FbVodODyeFl9EPJylBHMz1lVyKq63CRd8spI0Fl6ba6zy2KHJHVwOu1cvBPilGkhohqPNTXlk2mc3KHmflvo3GdPEyQEnps50F-aNb1K4YNkXYK0ivXs0sf_2SkBf7uAJMFS0wvwkh0fJh2KyNVxIxjQDZ5daGcGasqEh_Mnzso6Orb-pd21pUct8xXrpBXbyuzZf2nHN19wpojRmjqiNoaELu75nWyWxBzE0BHJMIAxW6WZWqbq72J3J1Iw7jgn",
+                "bathroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCqzvo0AAYdW49IohLQo3vWbblLjZDeDLuNfDFzzvKOtepkmf9mCXSliSW2BRHKZnDt0FCfJLCacNJK6J0bUGdiY_RgaWp5zToszDwytxa7sOGJ7Brx96RP1Krms1bVoLvbRL09IVDDDNp-nfIsnz1Y51MHBhEB8V_0KK_NUkKJ7UHpBQlfVZ6vfOdfU5uXBYaHr0ZHAxRnqSjGQNbngOwyUaL_twKSkQgiFiX2UMx67hUpOWY_6rfUaUC4gSMOcUt0IGLBcwHTFGYr",
+                "balcony": "https://lh3.googleusercontent.com/aida-public/AB6AXuBdywDPQExYrja5Lhh4UKrOgwYJaXcQUH08CorKx-Rwv6-uFJbOVthFErua2eIxSjmbPEwWPrO74Ej5d5SvrsGBz884ro8PRc5CFAWlpgcxF1_9SdhC9gEN2MTBt35J2IhbaGj8CkHSrH9wrBHrgtBhaoEVUs91QE_Ix-JT-vPiaa7T3FIYbI5ETTBuVbeVWVLU3zlkpbY7obZ4S2JIiHy1TC-kNpnppVJtrlFqYE5FNciJKklnUrfy283CVMPJWmM8QUA5zpGnFoRw",
+                "map": "https://lh3.googleusercontent.com/aida-public/AB6AXuAHtAR_BO8YoU3Vv0UZoupIbnk8YWuZcDHevjBwc0Gxxsd4MACBpES_bOwVUTVlFnDfF5ywaMtCkPuN6CzwgqBxFY7bZczUqTOeX-HCIdE2h_fwLB2rqxAKPlNNLDgDTtABFXr1KIZWu7EW8_oLD8PJLcUQwfFhBRpncHOtArtWDMKhGo-iDhD9aIQl3feJfewXWNUmBQz1YifkDp22UmROIMQlgxSZ0RE8ruBsXgbTfCq1eSY8B1iaREpVoil26ksMU6xmhWl1h946"
+            },
+            "agent": {
+                "name": "Sarah Mitchell",
+                "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBZkelqYuu7Vd3Pvs6oIS3SBwx7MDAgr6ZM2GxnD49Ho1RPQ3JWhWj-e-6Nd4eFuPDXzwFkWnuDdSlcv-JX55rRfIUOKXtcKnoXgBfV-FdTaYCD7QrrcR-R3r35fWZ0z9rEimmwnAC-1W5eaBiG6LDSZPxDJBVZ3_h9-cjRmlwFQERqE9JPwf1InNtD7NfKwtMkrFsR81_1lsoY3J3UDlEkzwaEMSqSHPW4TUa3SzY-Ai7USJ8Bx-zFkex0OiqCn3b_JtoUt3eNi1cx",
+                "phone": "+1 (415) 555-0123",
+                "email": "sarah.mitchell@mabiti.com"
+            },
+            "neighborhood": "Twin Peaks",
+            "features": [
+                "270-degree views",
+                "Modernist architecture",
+                "Floor-to-ceiling glass",
+                "Wrap-around deck",
+                "Media room",
+                "Wine cellar",
+                "Smart home controls",
+                "Elevator"
+            ]
+        },
+        {
+            "id": "prop-008",
+            "title": "Renovated Marina District Condo",
+            "address": "333 Marina Blvd, San Francisco, CA 94123",
+            "price": 6800,
+            "beds": 2,
+            "baths": 2,
+            "sqft": 1450,
+            "built": 1928,
+            "description": "Exquisite Marina District condo steps from the Palace of Fine Arts. Recently renovated with top-tier finishes while maintaining Art Deco charm. Sprawling floor plan with a chef's kitchen and shared rooftop deck with Golden Gate views.",
+            "images": {
+                "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "living": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "kitchen": "https://lh3.googleusercontent.com/aida-public/AB6AXuC87drBYFrXMP0TfDOJxao5cRDj0d-CI4TavgOs8bGybDwDCJNYtF2HX1pXc0vH808xW2xShBJYAHCrVwnzHkVjg9wORNav0y_LuzV_REryCMH80RJiZmHFXuXfIPDLlLXFsOvagrJnZgKsxB1hiJc3XHPi5rm3nxxQXBYRGnSCsQVS_WJFcc1IBR-613K8E1Gi4egORWjHwI-14U3PFAEMsrdu8m3WFIdJ03eYEWxl_CAswqPbxzgl2mr1iomB9_ZG6e0k8tjhM_G4",
+                "bedroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCI3anFlWcLO2z6FbVodODyeFl9EPJylBHMz1lVyKq63CRd8spI0Fl6ba6zy2KHJHVwOu1cvBPilGkhohqPNTXlk2mc3KHmflvo3GdPEyQEnps50F-aNb1K4YNkXYK0ivXs0sf_2SkBf7uAJMFS0wvwkh0fJh2KyNVxIxjQDZ5daGcGasqEh_Mnzso6Orb-pd21pUct8xXrpBXbyuzZf2nHN19wpojRmjqiNoaELu75nWyWxBzE0BHJMIAxW6WZWqbq72J3J1Iw7jgn",
+                "bathroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCqzvo0AAYdW49IohLQo3vWbblLjZDeDLuNfDFzzvKOtepkmf9mCXSliSW2BRHKZnDt0FCfJLCacNJK6J0bUGdiY_RgaWp5zToszDwytxa7sOGJ7Brx96RP1Krms1bVoLvbRL09IVDDDNp-nfIsnz1Y51MHBhEB8V_0KK_NUkKJ7UHpBQlfVZ6vfOdfU5uXBYaHr0ZHAxRnqSjGQNbngOwyUaL_twKSkQgiFiX2UMx67hUpOWY_6rfUaUC4gSMOcUt0IGLBcwHTFGYr",
+                "balcony": "https://lh3.googleusercontent.com/aida-public/AB6AXuBdywDPQExYrja5Lhh4UKrOgwYJaXcQUH08CorKx-Rwv6-uFJbOVthFErua2eIxSjmbPEwWPrO74Ej5d5SvrsGBz884ro8PRc5CFAWlpgcxF1_9SdhC9gEN2MTBt35J2IhbaGj8CkHSrH9wrBHrgtBhaoEVUs91QE_Ix-JT-vPiaa7T3FIYbI5ETTBuVbeVWVLU3zlkpbY7obZ4S2JIiHy1TC-kNpnppVJtrlFqYE5FNciJKklnUrfy283CVMPJWmM8QUA5zpGnFoRw",
+                "map": "https://lh3.googleusercontent.com/aida-public/AB6AXuAHtAR_BO8YoU3Vv0UZoupIbnk8YWuZcDHevjBwc0Gxxsd4MACBpES_bOwVUTVlFnDfF5ywaMtCkPuN6CzwgqBxFY7bZczUqTOeX-HCIdE2h_fwLB2rqxAKPlNNLDgDTtABFXr1KIZWu7EW8_oLD8PJLcUQwfFhBRpncHOtArtWDMKhGo-iDhD9aIQl3feJfewXWNUmBQz1YifkDp22UmROIMQlgxSZ0RE8ruBsXgbTfCq1eSY8B1iaREpVoil26ksMU6xmhWl1h946"
+            },
+            "agent": {
+                "name": "Michael Chen",
+                "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBZkelqYuu7Vd3Pvs6oIS3SBwx7MDAgr6ZM2GxnD49Ho1RPQ3JWhWj-e-6Nd4eFuPDXzwFkWnuDdSlcv-JX55rRfIUOKXtcKnoXgBfV-FdTaYCD7QrrcR-R3r35fWZ0z9rEimmwnAC-1W5eaBiG6LDSZPxDJBVZ3_h9-cjRmlwFQERqE9JPwf1InNtD7NfKwtMkrFsR81_1lsoY3J3UDlEkzwaEMSqSHPW4TUa3SzY-Ai7USJ8Bx-zFkex0OiqCn3b_JtoUt3eNi1cx",
+                "phone": "+1 (415) 555-0456",
+                "email": "michael.chen@mabiti.com"
+            },
+            "neighborhood": "Marina District",
+            "features": [
+                "Art Deco charm",
+                "Completely renovated",
+                "Wolf and Sub-Zero kitchen",
+                "Rooftop deck",
+                "Near Palace of Fine Arts",
+                "Steps from San Francisco Bay",
+                "Garage parking",
+                "Hardwood floors"
+            ]
+        },
+        {
+            "id": "prop-009",
+            "title": "Cozy Studio in North Beach",
+            "address": "600 Columbus Ave, San Francisco, CA 94133",
+            "price": 2800,
+            "beds": 0,
+            "baths": 1,
+            "sqft": 550,
+            "built": 1940,
+            "description": "Live like a local in North Beach. This cozy studio is centrally located near the city's best cafes, restaurants, and jazz bars. Perfect for those who value location above all else.",
+            "images": {
+                "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "living": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "kitchen": "https://lh3.googleusercontent.com/aida-public/AB6AXuC87drBYFrXMP0TfDOJxao5cRDj0d-CI4TavgOs8bGybDwDCJNYtF2HX1pXc0vH808xW2xShBJYAHCrVwnzHkVjg9wORNav0y_LuzV_REryCMH80RJiZmHFXuXfIPDLlLXFsOvagrJnZgKsxB1hiJc3XHPi5rm3nxxQXBYRGnSCsQVS_WJFcc1IBR-613K8E1Gi4egORWjHwI-14U3PFAEMsrdu8m3WFIdJ03eYEWxl_CAswqPbxzgl2mr1iomB9_ZG6e0k8tjhM_G4",
+                "bedroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCI3anFlWcLO2z6FbVodODyeFl9EPJylBHMz1lVyKq63CRd8spI0Fl6ba6zy2KHJHVwOu1cvBPilGkhohqPNTXlk2mc3KHmflvo3GdPEyQEnps50F-aNb1K4YNkXYK0ivXs0sf_2SkBf7uAJMFS0wvwkh0fJh2KyNVxIxjQDZ5daGcGasqEh_Mnzso6Orb-pd21pUct8xXrpBXbyuzZf2nHN19wpojRmjqiNoaELu75nWyWxBzE0BHJMIAxW6WZWqbq72J3J1Iw7jgn",
+                "bathroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCqzvo0AAYdW49IohLQo3vWbblLjZDeDLuNfDFzzvKOtepkmf9mCXSliSW2BRHKZnDt0FCfJLCacNJK6J0bUGdiY_RgaWp5zToszDwytxa7sOGJ7Brx96RP1Krms1bVoLvbRL09IVDDDNp-nfIsnz1Y51MHBhEB8V_0KK_NUkKJ7UHpBQlfVZ6vfOdfU5uXBYaHr0ZHAxRnqSjGQNbngOwyUaL_twKSkQgiFiX2UMx67hUpOWY_6rfUaUC4gSMOcUt0IGLBcwHTFGYr",
+                "balcony": "https://lh3.googleusercontent.com/aida-public/AB6AXuBdywDPQExYrja5Lhh4UKrOgwYJaXcQUH08CorKx-Rwv6-uFJbOVthFErua2eIxSjmbPEwWPrO74Ej5d5SvrsGBz884ro8PRc5CFAWlpgcxF1_9SdhC9gEN2MTBt35J2IhbaGj8CkHSrH9wrBHrgtBhaoEVUs91QE_Ix-JT-vPiaa7T3FIYbI5ETTBuVbeVWVLU3zlkpbY7obZ4S2JIiHy1TC-kNpnppVJtrlFqYE5FNciJKklnUrfy283CVMPJWmM8QUA5zpGnFoRw",
+                "map": "https://lh3.googleusercontent.com/aida-public/AB6AXuAHtAR_BO8YoU3Vv0UZoupIbnk8YWuZcDHevjBwc0Gxxsd4MACBpES_bOwVUTVlFnDfF5ywaMtCkPuN6CzwgqBxFY7bZczUqTOeX-HCIdE2h_fwLB2rqxAKPlNNLDgDTtABFXr1KIZWu7EW8_oLD8PJLcUQwfFhBRpncHOtArtWDMKhGo-iDhD9aIQl3feJfewXWNUmBQz1YifkDp22UmROIMQlgxSZ0RE8ruBsXgbTfCq1eSY8B1iaREpVoil26ksMU6xmhWl1h946"
+            },
+            "agent": {
+                "name": "Michael Chen",
+                "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBZkelqYuu7Vd3Pvs6oIS3SBwx7MDAgr6ZM2GxnD49Ho1RPQ3JWhWj-e-6Nd4eFuPDXzwFkWnuDdSlcv-JX55rRfIUOKXtcKnoXgBfV-FdTaYCD7QrrcR-R3r35fWZ0z9rEimmwnAC-1W5eaBiG6LDSZPxDJBVZ3_h9-cjRmlwFQERqE9JPwf1InNtD7NfKwtMkrFsR81_1lsoY3J3UDlEkzwaEMSqSHPW4TUa3SzY-Ai7USJ8Bx-zFkex0OiqCn3b_JtoUt3eNi1cx",
+                "phone": "+1 (415) 555-0456",
+                "email": "michael.chen@mabiti.com"
+            },
+            "neighborhood": "North Beach",
+            "features": [
+                "Prime location",
+                "Walk to cafes and bars",
+                "Efficient layout",
+                "City views",
+                "Updated finishes",
+                "Bike storage",
+                "Laundromat nearby",
+                "Low utilities"
+            ]
+        },
+        {
+            "id": "prop-010",
+            "title": "Skyline View Loft in Dogpatch",
+            "address": "1201 Tennessee St, San Francisco, CA 94107",
+            "price": 4900,
+            "beds": 1,
+            "baths": 1.5,
+            "sqft": 1200,
+            "built": 2018,
+            "description": "Stunning top-floor loft in the trendy Dogpatch neighborhood. Massive double-height windows provide incredible city skyline views. Modern kitchen with gas range and a spacious mezza-nine level bedroom.",
+            "images": {
+                "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "living": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "kitchen": "https://lh3.googleusercontent.com/aida-public/AB6AXuC87drBYFrXMP0TfDOJxao5cRDj0d-CI4TavgOs8bGybDwDCJNYtF2HX1pXc0vH808xW2xShBJYAHCrVwnzHkVjg9wORNav0y_LuzV_REryCMH80RJiZmHFXuXfIPDLlLXFsOvagrJnZgKsxB1hiJc3XHPi5rm3nxxQXBYRGnSCsQVS_WJFcc1IBR-613K8E1Gi4egORWjHwI-14U3PFAEMsrdu8m3WFIdJ03eYEWxl_CAswqPbxzgl2mr1iomB9_ZG6e0k8tjhM_G4",
+                "bedroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCI3anFlWcLO2z6FbVodODyeFl9EPJylBHMz1lVyKq63CRd8spI0Fl6ba6zy2KHJHVwOu1cvBPilGkhohqPNTXlk2mc3KHmflvo3GdPEyQEnps50F-aNb1K4YNkXYK0ivXs0sf_2SkBf7uAJMFS0wvwkh0fJh2KyNVxIxjQDZ5daGcGasqEh_Mnzso6Orb-pd21pUct8xXrpBXbyuzZf2nHN19wpojRmjqiNoaELu75nWyWxBzE0BHJMIAxW6WZWqbq72J3J1Iw7jgn",
+                "bathroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCqzvo0AAYdW49IohLQo3vWbblLjZDeDLuNfDFzzvKOtepkmf9mCXSliSW2BRHKZnDt0FCfJLCacNJK6J0bUGdiY_RgaWp5zToszDwytxa7sOGJ7Brx96RP1Krms1bVoLvbRL09IVDDDNp-nfIsnz1Y51MHBhEB8V_0KK_NUkKJ7UHpBQlfVZ6vfOdfU5uXBYaHr0ZHAxRnqSjGQNbngOwyUaL_twKSkQgiFiX2UMx67hUpOWY_6rfUaUC4gSMOcUt0IGLBcwHTFGYr",
+                "balcony": "https://lh3.googleusercontent.com/aida-public/AB6AXuBdywDPQExYrja5Lhh4UKrOgwYJaXcQUH08CorKx-Rwv6-uFJbOVthFErua2eIxSjmbPEwWPrO74Ej5d5SvrsGBz884ro8PRc5CFAWlpgcxF1_9SdhC9gEN2MTBt35J2IhbaGj8CkHSrH9wrBHrgtBhaoEVUs91QE_Ix-JT-vPiaa7T3FIYbI5ETTBuVbeVWVLU3zlkpbY7obZ4S2JIiHy1TC-kNpnppVJtrlFqYE5FNciJKklnUrfy283CVMPJWmM8QUA5zpGnFoRw",
+                "map": "https://lh3.googleusercontent.com/aida-public/AB6AXuAHtAR_BO8YoU3Vv0UZoupIbnk8YWuZcDHevjBwc0Gxxsd4MACBpES_bOwVUTVlFnDfF5ywaMtCkPuN6CzwgqBxFY7bZczUqTOeX-HCIdE2h_fwLB2rqxAKPlNNLDgDTtABFXr1KIZWu7EW8_oLD8PJLcUQwfFhBRpncHOtArtWDMKhGo-iDhD9aIQl3feJfewXWNUmBQz1YifkDp22UmROIMQlgxSZ0RE8ruBsXgbTfCq1eSY8B1iaREpVoil26ksMU6xmhWl1h946"
+            },
+            "agent": {
+                "name": "Sarah Mitchell",
+                "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBZkelqYuu7Vd3Pvs6oIS3SBwx7MDAgr6ZM2GxnD49Ho1RPQ3JWhWj-e-6Nd4eFuPDXzwFkWnuDdSlcv-JX55rRfIUOKXtcKnoXgBfV-FdTaYCD7QrrcR-R3r35fWZ0z9rEimmwnAC-1W5eaBiG6LDSZPxDJBVZ3_h9-cjRmlwFQERqE9JPwf1InNtD7NfKwtMkrFsR81_1lsoY3J3UDlEkzwaEMSqSHPW4TUa3SzY-Ai7USJ8Bx-zFkex0OiqCn3b_JtoUt3eNi1cx",
+                "phone": "+1 (415) 555-0123",
+                "email": "sarah.mitchell@mabiti.com"
+            },
+            "neighborhood": "Dogpatch",
+            "features": [
+                "Top-floor loft",
+                "Skyline views",
+                "Double-height windows",
+                "Mezzanine bedroom",
+                "Modern gas range",
+                "In-unit laundry",
+                "Prime Dogpatch location",
+                "Parking available"
+            ]
+        },
+        {
+            "id": "prop-011",
+            "title": "Family Home in Sunset District",
+            "address": "1700 28th Ave, San Francisco, CA 94122",
+            "price": 1600000,
+            "beds": 3,
+            "baths": 2,
+            "sqft": 1600,
+            "built": 1950,
+            "description": "Spacious and bright family home in the desirable Outer Sunset. Features a large backyard, updated kitchen, and a finished basement perfect for a home office or play area. Close to Ocean Beach and Golden Gate Park.",
+            "images": {
+                "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "living": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "kitchen": "https://lh3.googleusercontent.com/aida-public/AB6AXuC87drBYFrXMP0TfDOJxao5cRDj0d-CI4TavgOs8bGybDwDCJNYtF2HX1pXc0vH808xW2xShBJYAHCrVwnzHkVjg9wORNav0y_LuzV_REryCMH80RJiZmHFXuXfIPDLlLXFsOvagrJnZgKsxB1hiJc3XHPi5rm3nxxQXBYRGnSCsQVS_WJFcc1IBR-613K8E1Gi4egORWjHwI-14U3PFAEMsrdu8m3WFIdJ03eYEWxl_CAswqPbxzgl2mr1iomB9_ZG6e0k8tjhM_G4",
+                "bedroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCI3anFlWcLO2z6FbVodODyeFl9EPJylBHMz1lVyKq63CRd8spI0Fl6ba6zy2KHJHVwOu1cvBPilGkhohqPNTXlk2mc3KHmflvo3GdPEyQEnps50F-aNb1K4YNkXYK0ivXs0sf_2SkBf7uAJMFS0wvwkh0fJh2KyNVxIxjQDZ5daGcGasqEh_Mnzso6Orb-pd21pUct8xXrpBXbyuzZf2nHN19wpojRmjqiNoaELu75nWyWxBzE0BHJMIAxW6WZWqbq72J3J1Iw7jgn",
+                "bathroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCqzvo0AAYdW49IohLQo3vWbblLjZDeDLuNfDFzzvKOtepkmf9mCXSliSW2BRHKZnDt0FCfJLCacNJK6J0bUGdiY_RgaWp5zToszDwytxa7sOGJ7Brx96RP1Krms1bVoLvbRL09IVDDDNp-nfIsnz1Y51MHBhEB8V_0KK_NUkKJ7UHpBQlfVZ6vfOdfU5uXBYaHr0ZHAxRnqSjGQNbngOwyUaL_twKSkQgiFiX2UMx67hUpOWY_6rfUaUC4gSMOcUt0IGLBcwHTFGYr",
+                "balcony": "https://lh3.googleusercontent.com/aida-public/AB6AXuBdywDPQExYrja5Lhh4UKrOgwYJaXcQUH08CorKx-Rwv6-uFJbOVthFErua2eIxSjmbPEwWPrO74Ej5d5SvrsGBz884ro8PRc5CFAWlpgcxF1_9SdhC9gEN2MTBt35J2IhbaGj8CkHSrH9wrBHrgtBhaoEVUs91QE_Ix-JT-vPiaa7T3FIYbI5ETTBuVbeVWVLU3zlkpbY7obZ4S2JIiHy1TC-kNpnppVJtrlFqYE5FNciJKklnUrfy283CVMPJWmM8QUA5zpGnFoRw",
+                "map": "https://lh3.googleusercontent.com/aida-public/AB6AXuAHtAR_BO8YoU3Vv0UZoupIbnk8YWuZcDHevjBwc0Gxxsd4MACBpES_bOwVUTVlFnDfF5ywaMtCkPuN6CzwgqBxFY7bZczUqTOeX-HCIdE2h_fwLB2rqxAKPlNNLDgDTtABFXr1KIZWu7EW8_oLD8PJLcUQwfFhBRpncHOtArtWDMKhGo-iDhD9aIQl3feJfewXWNUmBQz1YifkDp22UmROIMQlgxSZ0RE8ruBsXgbTfCq1eSY8B1iaREpVoil26ksMU6xmhWl1h946"
+            },
+            "agent": {
+                "name": "Emma Rodriguez",
+                "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBZkelqYuu7Vd3Pvs6oIS3SBwx7MDAgr6ZM2GxnD49Ho1RPQ3JWhWj-e-6Nd4eFuPDXzwFkWnuDdSlcv-JX55rRfIUOKXtcKnoXgBfV-FdTaYCD7QrrcR-R3r35fWZ0z9rEimmwnAC-1W5eaBiG6LDSZPxDJBVZ3_h9-cjRmlwFQERqE9JPwf1InNtD7NfKwtMkrFsR81_1lsoY3J3UDlEkzwaEMSqSHPW4TUa3SzY-Ai7USJ8Bx-zFkex0OiqCn3b_JtoUt3eNi1cx",
+                "phone": "+1 (415) 555-0789",
+                "email": "emma.rodriguez@mabiti.com"
+            },
+            "neighborhood": "Sunset District",
+            "features": [
+                "Large backyard",
+                "Updated kitchen",
+                "Finished basement",
+                "Close to Ocean Beach",
+                "Near Golden Gate Park",
+                "Hardwood floors",
+                "Two-car garage",
+                "Family-friendly neighborhood"
+            ]
+        },
+        {
+            "id": "prop-012",
+            "title": "Luxury Condo in Russian Hill",
+            "address": "999 Lombard St, Unit 3A, San Francisco, CA 94133",
+            "price": 2750000,
+            "beds": 2,
+            "baths": 2.5,
+            "sqft": 1700,
+            "built": 2010,
+            "description": "Sophisticated condo living on iconic Lombard Street. Enjoy stunning Bay and Alcatraz views from your private balcony. Features include a chef's kitchen, spa-like baths, and access to a shared rooftop terrace.",
+            "images": {
+                "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "living": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "kitchen": "https://lh3.googleusercontent.com/aida-public/AB6AXuC87drBYFrXMP0TfDOJxao5cRDj0d-CI4TavgOs8bGybDwDCJNYtF2HX1pXc0vH808xW2xShBJYAHCrVwnzHkVjg9wORNav0y_LuzV_REryCMH80RJiZmHFXuXfIPDLlLXFsOvagrJnZgKsxB1hiJc3XHPi5rm3nxxQXBYRGnSCsQVS_WJFcc1IBR-613K8E1Gi4egORWjHwI-14U3PFAEMsrdu8m3WFIdJ03eYEWxl_CAswqPbxzgl2mr1iomB9_ZG6e0k8tjhM_G4",
+                "bedroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCI3anFlWcLO2z6FbVodODyeFl9EPJylBHMz1lVyKq63CRd8spI0Fl6ba6zy2KHJHVwOu1cvBPilGkhohqPNTXlk2mc3KHmflvo3GdPEyQEnps50F-aNb1K4YNkXYK0ivXs0sf_2SkBf7uAJMFS0wvwkh0fJh2KyNVxIxjQDZ5daGcGasqEh_Mnzso6Orb-pd21pUct8xXrpBXbyuzZf2nHN19wpojRmjqiNoaELu75nWyWxBzE0BHJMIAxW6WZWqbq72J3J1Iw7jgn",
+                "bathroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCqzvo0AAYdW49IohLQo3vWbblLjZDeDLuNfDFzzvKOtepkmf9mCXSliSW2BRHKZnDt0FCfJLCacNJK6J0bUGdiY_RgaWp5zToszDwytxa7sOGJ7Brx96RP1Krms1bVoLvbRL09IVDDDNp-nfIsnz1Y51MHBhEB8V_0KK_NUkKJ7UHpBQlfVZ6vfOdfU5uXBYaHr0ZHAxRnqSjGQNbngOwyUaL_twKSkQgiFiX2UMx67hUpOWY_6rfUaUC4gSMOcUt0IGLBcwHTFGYr",
+                "balcony": "https://lh3.googleusercontent.com/aida-public/AB6AXuBdywDPQExYrja5Lhh4UKrOgwYJaXcQUH08CorKx-Rwv6-uFJbOVthFErua2eIxSjmbPEwWPrO74Ej5d5SvrsGBz884ro8PRc5CFAWlpgcxF1_9SdhC9gEN2MTBt35J2IhbaGj8CkHSrH9wrBHrgtBhaoEVUs91QE_Ix-JT-vPiaa7T3FIYbI5ETTBuVbeVWVLU3zlkpbY7obZ4S2JIiHy1TC-kNpnppVJtrlFqYE5FNciJKklnUrfy283CVMPJWmM8QUA5zpGnFoRw",
+                "map": "https://lh3.googleusercontent.com/aida-public/AB6AXuAHtAR_BO8YoU3Vv0UZoupIbnk8YWuZcDHevjBwc0Gxxsd4MACBpES_bOwVUTVlFnDfF5ywaMtCkPuN6CzwgqBxFY7bZczUqTOeX-HCIdE2h_fwLB2rqxAKPlNNLDgDTtABFXr1KIZWu7EW8_oLD8PJLcUQwfFhBRpncHOtArtWDMKhGo-iDhD9aIQl3feJfewXWNUmBQz1YifkDp22UmROIMQlgxSZ0RE8ruBsXgbTfCq1eSY8B1iaREpVoil26ksMU6xmhWl1h946"
+            },
+            "agent": {
+                "name": "Michael Chen",
+                "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBZkelqYuu7Vd3Pvs6oIS3SBwx7MDAgr6ZM2GxnD49Ho1RPQ3JWhWj-e-6Nd4eFuPDXzwFkWnuDdSlcv-JX55rRfIUOKXtcKnoXgBfV-FdTaYCD7QrrcR-R3r35fWZ0z9rEimmwnAC-1W5eaBiG6LDSZPxDJBVZ3_h9-cjRmlwFQERqE9JPwf1InNtD7NfKwtMkrFsR81_1lsoY3J3UDlEkzwaEMSqSHPW4TUa3SzY-Ai7USJ8Bx-zFkex0OiqCn3b_JtoUt3eNi1cx",
+                "phone": "+1 (415) 555-0456",
+                "email": "michael.chen@mabiti.com"
+            },
+            "neighborhood": "Russian Hill",
+            "features": [
+                "Bay and Alcatraz views",
+                "Private balcony",
+                "Chef's kitchen",
+                "Spa-like baths",
+                "Rooftop terrace access",
+                "Hardwood floors",
+                "In-unit laundry",
+                "Secure building"
+            ]
+        },
+        {
+            "id": "prop-013",
+            "title": "Contemporary Home in Bernal Heights",
+            "address": "500 Cortland Ave, San Francisco, CA 94110",
+            "price": 1950000,
+            "beds": 3,
+            "baths": 3,
+            "sqft": 2000,
+            "built": 2017,
+            "description": "Modern living in vibrant Bernal Heights. This home boasts an open floor plan, high-end finishes, and a walk-out deck with city views. Enjoy easy access to local shops, parks, and restaurants.",
+            "images": {
+                "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "living": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "kitchen": "https://lh3.googleusercontent.com/aida-public/AB6AXuC87drBYFrXMP0TfDOJxao5cRDj0d-CI4TavgOs8bGybDwDCJNYtF2HX1pXc0vH808xW2xShBJYAHCrVwnzHkVjg9wORNav0y_LuzV_REryCMH80RJiZmHFXuXfIPDLlLXFsOvagrJnZgKsxB1hiJc3XHPi5rm3nxxQXBYRGnSCsQVS_WJFcc1IBR-613K8E1Gi4egORWjHwI-14U3PFAEMsrdu8m3WFIdJ03eYEWxl_CAswqPbxzgl2mr1iomB9_ZG6e0k8tjhM_G4",
+                "bedroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCI3anFlWcLO2z6FbVodODyeFl9EPJylBHMz1lVyKq63CRd8spI0Fl6ba6zy2KHJHVwOu1cvBPilGkhohqPNTXlk2mc3KHmflvo3GdPEyQEnps50F-aNb1K4YNkXYK0ivXs0sf_2SkBf7uAJMFS0wvwkh0fJh2KyNVxIxjQDZ5daGcGasqEh_Mnzso6Orb-pd21pUct8xXrpBXbyuzZf2nHN19wpojRmjqiNoaELu75nWyWxBzE0BHJMIAxW6WZWqbq72J3J1Iw7jgn",
+                "bathroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCqzvo0AAYdW49IohLQo3vWbblLjZDeDLuNfDFzzvKOtepkmf9mCXSliSW2BRHKZnDt0FCfJLCacNJK6J0bUGdiY_RgaWp5zToszDwytxa7sOGJ7Brx96RP1Krms1bVoLvbRL09IVDDDNp-nfIsnz1Y51MHBhEB8V_0KK_NUkKJ7UHpBQlfVZ6vfOdfU5uXBYaHr0ZHAxRnqSjGQNbngOwyUaL_twKSkQgiFiX2UMx67hUpOWY_6rfUaUC4gSMOcUt0IGLBcwHTFGYr",
+                "balcony": "https://lh3.googleusercontent.com/aida-public/AB6AXuBdywDPQExYrja5Lhh4UKrOgwYJaXcQUH08CorKx-Rwv6-uFJbOVthFErua2eIxSjmbPEwWPrO74Ej5d5SvrsGBz884ro8PRc5CFAWlpgcxF1_9SdhC9gEN2MTBt35J2IhbaGj8CkHSrH9wrBHrgtBhaoEVUs91QE_Ix-JT-vPiaa7T3FIYbI5ETTBuVbeVWVLU3zlkpbY7obZ4S2JIiHy1TC-kNpnppVJtrlFqYE5FNciJKklnUrfy283CVMPJWmM8QUA5zpGnFoRw",
+                "map": "https://lh3.googleusercontent.com/aida-public/AB6AXuAHtAR_BO8YoU3Vv0UZoupIbnk8YWuZcDHevjBwc0Gxxsd4MACBpES_bOwVUTVlFnDfF5ywaMtCkPuN6CzwgqBxFY7bZczUqTOeX-HCIdE2h_fwLB2rqxAKPlNNLDgDTtABFXr1KIZWu7EW8_oLD8PJLcUQwfFhBRpncHOtArtWDMKhGo-iDhD9aIQl3feJfewXWNUmBQz1YifkDp22UmROIMQlgxSZ0RE8ruBsXgbTfCq1eSY8B1iaREpVoil26ksMU6xmhWl1h946"
+            },
+            "agent": {
+                "name": "Emma Rodriguez",
+                "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBZkelqYuu7Vd3Pvs6oIS3SBwx7MDAgr6ZM2GxnD49Ho1RPQ3JWhWj-e-6Nd4eFuPDXzwFkWnuDdSlcv-JX55rRfIUOKXtcKnoXgBfV-FdTaYCD7QrrcR-R3r35fWZ0z9rEimmwnAC-1W5eaBiG6LDSZPxDJBVZ3_h9-cjRmlwFQERqE9JPwf1InNtD7NfKwtMkrFsR81_1lsoY3J3UDlEkzwaEMSqSHPW4TUa3SzY-Ai7USJ8Bx-zFkex0OiqCn3b_JtoUt3eNi1cx",
+                "phone": "+1 (415) 555-0789",
+                "email": "emma.rodriguez@mabiti.com"
+            },
+            "neighborhood": "Bernal Heights",
+            "features": [
+                "Open floor plan",
+                "High-end finishes",
+                "City views",
+                "Walk-out deck",
+                "Close to parks",
+                "Gourmet kitchen",
+                "Smart home features",
+                "Garage parking"
+            ]
+        },
+        {
+            "id": "prop-014",
+            "title": "Historic Home in Presidio Heights",
+            "address": "300 Arguello Blvd, San Francisco, CA 94118",
+            "price": 4500000,
+            "beds": 5,
+            "baths": 4.5,
+            "sqft": 4000,
+            "built": 1920,
+            "description": "Grand historic home in prestigious Presidio Heights. This elegant residence features formal living and dining rooms, a renovated chef's kitchen, and a lush private garden. Steps from the Presidio National Park.",
+            "images": {
+                "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "living": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
+                "kitchen": "https://lh3.googleusercontent.com/aida-public/AB6AXuC87drBYFrXMP0TfDOJxao5cRDj0d-CI4TavgOs8bGybDwDCJNYtF2HX1pXc0vH808xW2xShBJYAHCrVwnzHkVjg9wORNav0y_LuzV_REryCMH80RJiZmHFXuXfIPDLlLXFsOvagrJnZgKsxB1hiJc3XHPi5rm3nxxQXBYRGnSCsQVS_WJFcc1IBR-613K8E1Gi4egORWjHwI-14U3PFAEMsrdu8m3WFIdJ03eYEWxl_CAswqPbxzgl2mr1iomB9_ZG6e0k8tjhM_G4",
+                "bedroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCI3anFlWcLO2z6FbVodODyeFl9EPJylBHMz1lVyKq63CRd8spI0Fl6ba6zy2KHJHVwOu1cvBPilGkhohqPNTXlk2mc3KHmflvo3GdPEyQEnps50F-aNb1K4YNkXYK0ivXs0sf_2SkBf7uAJMFS0wvwkh0fJh2KyNVxIxjQDZ5daGcGasqEh_Mnzso6Orb-pd21pUct8xXrpBXbyuzZf2nHN19wpojRmjqiNoaELu75nWyWxBzE0BHJMIAxW6WZWqbq72J3J1Iw7jgn",
+                "bathroom": "https://lh3.googleusercontent.com/aida-public/AB6AXuCqzvo0AAYdW49IohLQo3vWbblLjZDeDLuNfDFzzvKOtepkmf9mCXSliSW2BRHKZnDt0FCfJLCacNJK6J0bUGdiY_RgaWp5zToszDwytxa7sOGJ7Brx96RP1Krms1bVoLvbRL09IVDDDNp-nfIsnz1Y51MHBhEB8V_0KK_NUkKJ7UHpBQlfVZ6vfOdfU5uXBYaHr0ZHAxRnqSjGQNbngOwyUaL_twKSkQgiFiX2UMx67hUpOWY_6rfUaUC4gSMOcUt0IGLBcwHTFGYr",
+                "balcony": "https://lh3.googleusercontent.com/aida-public/AB6AXuBdywDPQExYrja5Lhh4UKrOgwYJaXcQUH08CorKx-Rwv6-uFJbOVthFErua2eIxSjmbPEwWPrO74Ej5d5SvrsGBz884ro8PRc5CFAWlpgcxF1_9SdhC9gEN2MTBt35J2IhbaGj8CkHSrH9wrBHrgtBhaoEVUs91QE_Ix-JT-vPiaa7T3FIYbI5ETTBuVbeVWVLU3zlkpbY7obZ4S2JIiHy1TC-kNpnppVJtrlFqYE5FNciJKklnUrfy283CVMPJWmM8QUA5zpGnFoRw",
+                "map": "https://lh3.googleusercontent.com/aida-public/AB6AXuAHtAR_BO8YoU3Vv0UZoupIbnk8YWuZcDHevjBwc0Gxxsd4MACBpES_bOwVUTVlFnDfF5ywaMtCkPuN6CzwgqBxFY7bZczUqTOeX-HCIdE2h_fwLB2rqxAKPlNNLDgDTtABFXr1KIZWu7EW8_oLD8PJLcUQwfFhBRpncHOtArtWDMKhGo-iDhD9aIQl3feJfewXWNUmBQz1YifkDp22UmROIMQlgxSZ0RE8ruBsXgbTfCq1eSY8B1iaREpVoil26ksMU6xmhWl1h946"
+            },
+            "agent": {
+                "name": "Sarah Mitchell",
+                "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBZkelqYuu7Vd3Pvs6oIS3SBwx7MDAgr6ZM2GxnD49Ho1RPQ3JWhWj-e-6Nd4eFuPDXzwFkWnuDdSlcv-JX55rRfIUOKXtcKnoXgBfV-FdTaYCD7QrrcR-R3r35fWZ0z9rEimmwnAC-1W5eaBiG6LDSZPxDJBVZ3_h9-cjRmlwFQERqE9JPwf1InNtD7NfKwtMkrFsR81_1lsoY3J3UDlEkzwaEMSqSHPW4TUa3SzY-Ai7USJ8Bx-zFkex0OiqCn3b_JtoUt3eNi1cx",
+                "phone": "+1 (415) 555-0123",
+                "email": "sarah.mitchell@mabiti.com"
+            },
+            "neighborhood": "Presidio Heights",
+            "features": [
+                "Formal living/dining",
+                "Renovated kitchen",
+                "Private garden",
+                "Near Presidio Park",
+                "High ceilings",
+                "Original details",
+                "Wine cellar",
+                "Two-car garage"
+            ]
+        }
+    ]
+}
