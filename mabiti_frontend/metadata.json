@@ -1,0 +1,7 @@
+{
+  "name": "Mabiti",
+  "description": "A high-end real estate listing application featuring AI-powered property insights, investment analysis, and interactive neighborhood vibes.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
