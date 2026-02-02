@@ -17,10 +17,19 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
                 <img
                     src={property.images.hero}
                     alt={property.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
+                {/* 360 Indicator */}
+                {property.panorama_images && property.panorama_images.length > 0 && (
+                    <div className="absolute top-12 right-4 z-10">
+                        <div className="bg-white/90 dark:bg-black/70 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg border border-white/20">
+                            <span className="material-symbols-outlined text-[18px] text-blue-600 dark:text-blue-400">360</span>
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-900 dark:text-white">360° View</span>
+                        </div>
+                    </div>
+                )}
                 {/* Price Badge */}
                 <div className="absolute top-4 left-4">
                     <div className="bg-blue-600 dark:bg-blue-500 text-white px-4 py-2 rounded-full font-bold text-lg shadow-lg">
@@ -30,8 +39,9 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
 
                 {/* Status Badge */}
                 <div className="absolute top-4 right-4">
-                    <span className="px-3 py-1 bg-green-500/90 backdrop-blur-sm text-white text-xs font-semibold rounded-full uppercase tracking-wide">
-                        For Rent
+                    <span className={`px-3 py-1 backdrop-blur-sm text-white text-xs font-semibold rounded-full uppercase tracking-wide ${property.listing_type === 'buy' ? 'bg-orange-500/90' : 'bg-green-500/90'
+                        }`}>
+                        For {property.listing_type === 'buy' ? 'Buy' : 'Rent'}
                     </span>
                 </div>
             </div>

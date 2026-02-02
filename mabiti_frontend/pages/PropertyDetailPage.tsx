@@ -2,8 +2,10 @@ import React, { useState, useEffect, useCallback, memo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { generateAIInsights } from '../services/geminiService';
 import { AIInsightsData, Property } from '../types';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import { Header } from '../components/Header';
-import { LiquidGlassFilters } from '../components/LiquidGlass';
+import { PanoramaViewer } from '../components/PanoramaViewer';
+import { LiquidGlass, LiquidGlassFilters } from '../components/LiquidGlass';
 
 import { propertyService } from '../services/propertyService';
 
@@ -20,6 +22,94 @@ export const PropertyDetailPage: React.FC = () => {
     const [insights, setInsights] = useState<AIInsightsData | null>(null);
     const [isAiLoading, setIsAiLoading] = useState(false);
     const [showFullDesc, setShowFullDesc] = useState(false);
+
+    const { isLoaded } = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY || '',
+        libraries: ['places']
+    });
+
+    // Define map styles for dark mode
+    const mapStyles = [
+        { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+        { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+        { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+        {
+            featureType: "administrative.locality",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#d59563" }],
+        },
+        {
+            featureType: "poi",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#d59563" }],
+        },
+        {
+            featureType: "poi.park",
+            elementType: "geometry",
+            stylers: [{ color: "#263c3f" }],
+        },
+        {
+            featureType: "poi.park",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#6b9a76" }],
+        },
+        {
+            featureType: "road",
+            elementType: "geometry",
+            stylers: [{ color: "#38414e" }],
+        },
+        {
+            featureType: "road",
+            elementType: "geometry.stroke",
+            stylers: [{ color: "#212a37" }],
+        },
+        {
+            featureType: "road",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#9ca5b3" }],
+        },
+        {
+            featureType: "road.highway",
+            elementType: "geometry",
+            stylers: [{ color: "#746855" }],
+        },
+        {
+            featureType: "road.highway",
+            elementType: "geometry.stroke",
+            stylers: [{ color: "#1f2835" }],
+        },
+        {
+            featureType: "road.highway",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#f3d19c" }],
+        },
+        {
+            featureType: "transit",
+            elementType: "geometry",
+            stylers: [{ color: "#2f3948" }],
+        },
+        {
+            featureType: "transit.station",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#d59563" }],
+        },
+        {
+            featureType: "water",
+            elementType: "geometry",
+            stylers: [{ color: "#17263c" }],
+        },
+        {
+            featureType: "water",
+            elementType: "labels.text.fill",
+            stylers: [{ color: "#515c6d" }],
+        },
+        {
+            featureType: "water",
+            elementType: "labels.text.stroke",
+            stylers: [{ color: "#17263c" }],
+        },
+    ];
 
     // Load property data
     useEffect(() => {
@@ -38,6 +128,8 @@ export const PropertyDetailPage: React.FC = () => {
         window.scrollTo(0, 0); // Scroll to top on navigation
     }, [propertyId]);
 
+    const [show360, setShow360] = useState(false);
+
     const fetchInsights = useCallback(async () => {
         if (!property) return;
         setIsAiLoading(true);
@@ -52,9 +144,7 @@ export const PropertyDetailPage: React.FC = () => {
         }
     }, [property, insights, fetchInsights]);
 
-    if (!property) {
-        return <div className="text-white p-10 bg-black min-h-screen">Loading property...</div>;
-    }
+    if (!property) return <div className="h-screen flex items-center justify-center text-white">Property not found</div>;
 
     return (
         <div className="relative z-10 flex flex-col min-h-screen bg-zinc-50 dark:bg-black/90 transition-colors duration-500">
@@ -76,7 +166,18 @@ export const PropertyDetailPage: React.FC = () => {
 
                         <Breadcrumbs neighborhood={property.neighborhood} />
 
-                        <Gallery images={property.images} />
+                        <Gallery
+                            images={property.images}
+                            panorama_images={property.panorama_images}
+                            onOpen360={() => setShow360(true)}
+                        />
+
+                        {show360 && property.panorama_images && property.panorama_images.length > 0 && (
+                            <PanoramaViewer
+                                imageUrl={property.panorama_images[0]}
+                                onClose={() => setShow360(false)}
+                            />
+                        )}
 
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-10">
                             {/* Main Content Area */}
@@ -89,6 +190,7 @@ export const PropertyDetailPage: React.FC = () => {
                                             <div>
                                                 <h1 className="text-black dark:text-white text-4xl md:text-5xl font-bold leading-tight tracking-tight mb-3">
                                                     ${property.price.toLocaleString()}
+                                                    {property.listing_type === 'rent' && <span className="text-xl font-medium ml-2 opacity-60">/mo</span>}
                                                 </h1>
                                                 <p className="text-zinc-600 dark:text-zinc-400 text-lg font-normal flex items-center gap-1">
                                                     <span className="material-symbols-outlined text-zinc-500">location_on</span>
@@ -125,8 +227,11 @@ export const PropertyDetailPage: React.FC = () => {
                                                         Delete Permanently
                                                     </button>
                                                 )}
-                                                <span className="px-4 py-1.5 bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-500/30 text-sm font-semibold rounded-full tracking-wide uppercase shrink-0">
-                                                    For Rent
+                                                <span className={`px-4 py-1.5 text-sm font-semibold rounded-full tracking-wide uppercase shrink-0 border ${property.listing_type === 'buy'
+                                                    ? 'bg-orange-100 dark:bg-orange-500/20 text-orange-700 dark:text-orange-400 border-orange-200 dark:border-orange-500/30'
+                                                    : 'bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-400 border-green-200 dark:border-green-500/30'
+                                                    }`}>
+                                                    For {property.listing_type === 'buy' ? 'Buy' : 'Rent'}
                                                 </span>
                                             </div>
                                         </div>
@@ -144,7 +249,7 @@ export const PropertyDetailPage: React.FC = () => {
 
                                     <div className="border-b border-zinc-100 dark:border-white/5 pb-8">
                                         <h2 className="text-xl font-bold text-black dark:text-white mb-4">About This Home</h2>
-                                        <p className={`text-zinc-700 dark:text-zinc-300 text-base leading-relaxed ${!showFullDesc ? 'line-clamp-3' : ''}`}>
+                                        <p className={`text - zinc - 700 dark: text - zinc - 300 text - base leading - relaxed ${!showFullDesc ? 'line-clamp-3' : ''} `}>
                                             {property.description}
                                         </p>
                                         <button
@@ -229,14 +334,31 @@ export const PropertyDetailPage: React.FC = () => {
                                 {/* Location Map Section */}
                                 <div className="glass-panel rounded-3xl p-8 mb-10 bg-white dark:bg-black/40 border-zinc-200 dark:border-white/10 shadow-xl dark:shadow-xl">
                                     <h3 className="text-xl font-bold text-black dark:text-white mb-6">Location</h3>
-                                    <div className="w-full h-72 bg-zinc-200 dark:bg-zinc-800 rounded-2xl overflow-hidden relative group ring-1 ring-black/5 dark:ring-white/10">
-                                        <img className="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-300 grayscale hover:grayscale-0" alt="Map View" src={property.images.map} />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-white/80 dark:from-black/80 to-transparent pointer-events-none"></div>
-                                        <div className="absolute inset-0 flex items-center justify-center">
-                                            <button className="bg-white/90 dark:bg-white/10 backdrop-blur-md text-black dark:text-white border border-black/5 dark:border-white/20 px-6 py-3 rounded-full font-bold shadow-xl transform group-hover:scale-105 transition-all flex items-center gap-2 hover:bg-white hover:text-black">
-                                                <span className="material-symbols-outlined">map</span> Explore Area
-                                            </button>
-                                        </div>
+                                    <div className="w-full h-80 bg-zinc-200 dark:bg-zinc-800 rounded-2xl overflow-hidden relative group ring-1 ring-black/5 dark:ring-white/10">
+                                        {isLoaded && property.latitude && property.longitude ? (
+                                            <GoogleMap
+                                                mapContainerStyle={{ width: '100%', height: '100%' }}
+                                                center={{ lat: property.latitude, lng: property.longitude }}
+                                                zoom={15}
+                                                options={{
+                                                    styles: mapStyles,
+                                                    disableDefaultUI: true,
+                                                    zoomControl: true,
+                                                }}
+                                            >
+                                                <Marker position={{ lat: property.latitude, lng: property.longitude }} />
+                                            </GoogleMap>
+                                        ) : (
+                                            <>
+                                                <img className="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-300 grayscale hover:grayscale-0" alt="Map View" src={property.images.map} />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-white/80 dark:from-black/80 to-transparent pointer-events-none"></div>
+                                                <div className="absolute inset-0 flex items-center justify-center">
+                                                    <button className="bg-white/90 dark:bg-white/10 backdrop-blur-md text-black dark:text-white border border-black/5 dark:border-white/20 px-6 py-3 rounded-full font-bold shadow-xl transform group-hover:scale-105 transition-all flex items-center gap-2 hover:bg-white hover:text-black">
+                                                        <span className="material-symbols-outlined">map</span> Explore Area
+                                                    </button>
+                                                </div>
+                                            </>
+                                        )}
                                         <div className="absolute bottom-4 left-4 flex gap-2">
                                             <div className="bg-white dark:bg-black/80 backdrop-blur text-xs text-black dark:text-zinc-300 px-3 py-1 rounded-full border border-black/5 dark:border-white/10 font-bold shadow-sm">
                                                 Walk Score: <span className="text-blue-600 dark:text-white font-bold ml-1">98</span>
@@ -298,16 +420,24 @@ const Breadcrumbs: React.FC<{ neighborhood: string }> = ({ neighborhood }) => (
     </div>
 );
 
-const Gallery: React.FC<{ images: any }> = ({ images }) => (
+const Gallery: React.FC<{ images: any, panorama_images?: string[], onOpen360: () => void }> = ({ images, panorama_images, onOpen360 }) => (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-3 h-[300px] md:h-[500px] mb-10 rounded-3xl overflow-hidden ring-1 ring-black/5 dark:ring-white/10 shadow-2xl relative bg-zinc-100 dark:bg-zinc-900">
         <div className="md:col-span-2 h-full w-full bg-center bg-no-repeat bg-cover relative group cursor-pointer" style={{ backgroundImage: `url(${images.living})` }}>
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500"></div>
-            <div className="absolute top-4 left-4 z-20">
-                <button className="bg-white/80 dark:bg-black/60 backdrop-blur-md text-zinc-900 dark:text-white border border-black/5 dark:border-white/20 px-4 py-2 rounded-full font-bold flex items-center gap-2 hover:bg-white hover:text-black transition-all shadow-lg">
-                    <span className="material-symbols-outlined text-xl">360</span>
-                    <span className="text-sm">360° View</span>
-                </button>
-            </div>
+            {panorama_images && panorama_images.length > 0 && (
+                <div className="absolute top-4 left-4 z-20">
+                    <LiquidGlass
+                        variant="clear"
+                        onClick={() => onOpen360()}
+                        className="!p-0 !bg-black/20 dark:!bg-black/50 backdrop-blur-md border border-white/20 hover:!bg-white/40 transition-all !rounded-full shadow-xl"
+                    >
+                        <div className="px-5 py-2.5 flex items-center gap-2">
+                            <span className="material-symbols-outlined text-white text-xl">360</span>
+                            <span className="text-white text-sm font-bold uppercase tracking-wider">360° View</span>
+                        </div>
+                    </LiquidGlass>
+                </div>
+            )}
         </div>
         <div className="hidden md:flex flex-col gap-3 h-full">
             <div className="h-1/2 w-full bg-center bg-no-repeat bg-cover relative group cursor-pointer" style={{ backgroundImage: `url(${images.kitchen})` }}>
@@ -353,12 +483,12 @@ const Amenity: React.FC<{ icon: string, label: string }> = ({ icon, label }) => 
 
 const AICard: React.FC<{ title: string, icon: string, accent: string, gradient: string, children: React.ReactNode }> = ({ title, icon, accent, gradient, children }) => (
     <div className="group relative rounded-3xl ai-card-glow">
-        <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${gradient} opacity-40 dark:opacity-60 group-hover:opacity-80 dark:group-hover:opacity-100 transition-opacity`}></div>
+        <div className={`absolute inset - 0 rounded - 3xl bg - gradient - to - br ${gradient} opacity - 40 dark: opacity - 60 group - hover: opacity - 80 dark: group - hover: opacity - 100 transition - opacity`}></div>
         <div className="relative h-full m-[1px] bg-white/90 dark:bg-zinc-900 rounded-[23px] p-6 flex flex-col justify-between overflow-hidden">
-            <div className={`absolute top-0 right-0 w-24 h-24 bg-${accent}-500/10 blur-2xl -mr-6 -mt-6`}></div>
+            <div className={`absolute top - 0 right - 0 w - 24 h - 24 bg - ${accent} -500 / 10 blur - 2xl - mr - 6 - mt - 6`}></div>
             <div className="flex justify-between items-start mb-4 relative z-10">
                 <span className="text-sm font-semibold text-zinc-500 dark:text-zinc-400">{title}</span>
-                <span className={`material-symbols-outlined text-${accent}-500 dark:text-${accent}-400`}>{icon}</span>
+                <span className={`material - symbols - outlined text - ${accent} -500 dark: text - ${accent} -400`}>{icon}</span>
             </div>
             {children}
         </div>
@@ -393,9 +523,9 @@ const AgentCard: React.FC<{ agent: any }> = ({ agent }) => (
         <div className="mt-6 pt-6 border-t border-black/5 dark:border-white/5 relative z-10">
             <p className="text-xs text-zinc-500 text-center mb-4 font-medium uppercase tracking-wide">Or send a quick message</p>
             <textarea className="glass-input w-full rounded-xl p-3 text-sm resize-none bg-black/5 dark:bg-black/40 border-black/5 dark:border-white/10 text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-500 focus:bg-white dark:focus:bg-black/60 transition-colors" placeholder={`Hi ${agent.name.split(' ')[0]}, I'm interested in this property...`} rows={3}></textarea>
-            <button className="mt-3 text-blue-600 dark:text-blue-400 text-sm font-bold w-full text-center hover:text-blue-500 dark:hover:text-blue-300 transition-colors">Send Message</button>
-        </div>
-    </div>
+            < button className="mt-3 text-blue-600 dark:text-blue-400 text-sm font-bold w-full text-center hover:text-blue-500 dark:hover:text-blue-300 transition-colors" > Send Message</button >
+        </div >
+    </div >
 );
 
 const SimilarHomeItem: React.FC<{ price: string, stats: string, image: string }> = ({ price, stats, image }) => (

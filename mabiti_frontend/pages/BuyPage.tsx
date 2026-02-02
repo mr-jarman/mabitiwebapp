@@ -9,7 +9,7 @@ import { propertyService } from '../services/propertyService';
 const MemoizedFilters = memo(LiquidGlassFilters);
 const MemoizedHeader = memo(Header);
 
-export const RentPage: React.FC = () => {
+export const BuyPage: React.FC = () => {
     const [properties, setProperties] = useState<Property[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -17,7 +17,8 @@ export const RentPage: React.FC = () => {
         const loadProperties = async () => {
             try {
                 const data = await propertyService.getAll();
-                setProperties(data.filter(p => p.listing_type === 'rent'));
+                // Filter specifically for properties for sale
+                setProperties(data.filter(p => p.listing_type === 'buy'));
             } catch (error) {
                 console.error('Error loading properties:', error);
             } finally {
@@ -39,8 +40,8 @@ export const RentPage: React.FC = () => {
 
                         {/* Page Header */}
                         <div className="mb-10">
-                            <h1 className="text-zinc-900 dark:text-white text-5xl font-bold mb-3">Properties for Rent</h1>
-                            <p className="text-zinc-600 dark:text-zinc-400 text-lg">Discover your perfect rental home</p>
+                            <h1 className="text-zinc-900 dark:text-white text-5xl font-bold mb-3">Properties for Sale</h1>
+                            <p className="text-zinc-600 dark:text-zinc-400 text-lg">Invest in your future with the perfect home</p>
                         </div>
 
                         {/* Properties Grid */}
@@ -68,7 +69,7 @@ export const RentPage: React.FC = () => {
                         {!loading && properties.length === 0 && (
                             <div className="flex flex-col items-center justify-center h-64">
                                 <span className="material-symbols-outlined text-zinc-400 dark:text-zinc-600 text-6xl mb-4">home</span>
-                                <p className="text-zinc-500 dark:text-zinc-400 text-lg">No properties available at the moment</p>
+                                <p className="text-zinc-500 dark:text-zinc-400 text-lg">No properties for sale at the moment</p>
                             </div>
                         )}
                     </div>

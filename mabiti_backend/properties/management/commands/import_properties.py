@@ -31,6 +31,7 @@ class Command(BaseCommand):
                     'agent': item['agent'],
                     'neighborhood': item['neighborhood'],
                     'features': item['features'],
+                    'panorama_images': item.get('panorama_images', []),
                 }
             )
             if created:

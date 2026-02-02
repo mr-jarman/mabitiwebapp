@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import { Header } from '../components/Header';
-import { DottedSurface } from '../components/DottedSurface';
 import { propertyService } from '../services/propertyService';
 import { LiquidGlassFilters } from '../components/LiquidGlass';
 import { useTheme } from '../services/ThemeContext';
@@ -24,11 +24,22 @@ interface PropertyData {
     parking: string;
     features: string[];
     images: File[];
+    panoramaImages: File[];
     documents: File[];
+    latitude: number | null;
+    longitude: number | null;
     contactName: string;
     contactEmail: string;
     contactPhone: string;
 }
+
+const mapStyles = [
+    {
+        featureType: "poi",
+        elementType: "labels",
+        stylers: [{ visibility: "off" }]
+    }
+];
 
 export const SellPage: React.FC = () => {
     const { theme } = useTheme();
@@ -36,7 +47,7 @@ export const SellPage: React.FC = () => {
     const [currentStep, setCurrentStep] = useState(1);
     const [formData, setFormData] = useState<PropertyData>({
         propertyType: '',
-        listingType: 'sale',
+        listingType: 'buy',
         title: '',
         description: '',
         price: '',
@@ -52,12 +63,33 @@ export const SellPage: React.FC = () => {
         parking: '',
         features: [],
         images: [],
+        panoramaImages: [],
         documents: [],
+        latitude: null,
+        longitude: null,
         contactName: user?.username || '',
         contactEmail: user?.email || '',
         contactPhone: '',
     });
+
+    const { isLoaded } = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY || '',
+        libraries: ['places']
+    });
+
+    const [mapCenter, setMapCenter] = useState({ lat: 37.7749, lng: -122.4194 }); // Default SF
+
+    useEffect(() => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (pos) => setMapCenter({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+                () => console.log("Geolocation blocked")
+            );
+        }
+    }, []);
     const [imagePreviews, setImagePreviews] = useState<string[]>([]);
+    const [panoramaPreviews, setPanoramaPreviews] = useState<string[]>([]);
     const [documentPreviews, setDocumentPreviews] = useState<string[]>([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -110,6 +142,19 @@ export const SellPage: React.FC = () => {
         });
     };
 
+    const handlePanoramaUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = Array.from(e.target.files || []) as File[];
+        setFormData(prev => ({ ...prev, panoramaImages: [...prev.panoramaImages, ...files] }));
+
+        files.forEach((file: File) => {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPanoramaPreviews(prev => [...prev, reader.result as string]);
+            };
+            reader.readAsDataURL(file);
+        });
+    };
+
     const handleDocumentUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = Array.from(e.target.files || []) as File[];
         setFormData(prev => ({ ...prev, documents: [...prev.documents, ...files] }));
@@ -121,6 +166,14 @@ export const SellPage: React.FC = () => {
         setFormData(prev => ({
             ...prev,
             images: prev.images.filter((_, i) => i !== index)
+        }));
+    };
+
+    const removePanorama = (index: number) => {
+        setPanoramaPreviews(prev => prev.filter((_, i) => i !== index));
+        setFormData(prev => ({
+            ...prev,
+            panoramaImages: prev.panoramaImages.filter((_, i) => i !== index)
         }));
     };
 
@@ -160,6 +213,10 @@ export const SellPage: React.FC = () => {
                 },
                 neighborhood: formData.city || 'Unknown Neighborhood',
                 features: formData.features,
+                panorama_images: panoramaPreviews,
+                listing_type: formData.listingType,
+                latitude: formData.latitude,
+                longitude: formData.longitude,
                 is_visible: true
             };
 
@@ -188,12 +245,16 @@ export const SellPage: React.FC = () => {
                 parking: '',
                 features: [],
                 images: [],
+                panoramaImages: [],
                 documents: [],
+                latitude: null,
+                longitude: null,
                 contactName: '',
                 contactEmail: '',
                 contactPhone: '',
             });
             setImagePreviews([]);
+            setPanoramaPreviews([]);
             setDocumentPreviews([]);
         } catch (error) {
             console.error('Failed to submit property:', error);
@@ -207,7 +268,7 @@ export const SellPage: React.FC = () => {
             case 1:
                 return formData.propertyType !== '';
             case 2:
-                return formData.title && formData.description && formData.price && formData.address;
+                return formData.title && formData.description && formData.price && formData.address && formData.latitude;
             case 3:
                 return imagePreviews.length > 0;
             case 4:
@@ -220,7 +281,6 @@ export const SellPage: React.FC = () => {
     return (
         <div className="relative z-10 flex flex-col min-h-screen bg-zinc-50 dark:bg-black transition-colors duration-500 overflow-hidden">
             <LiquidGlassFilters />
-            <DottedSurface />
             <Header />
 
             <main className="flex-1 px-4 md:px-8 lg:px-12 xl:px-16 pt-24 pb-16 relative z-10">
@@ -298,8 +358,8 @@ export const SellPage: React.FC = () => {
                                     </label>
                                     <div className="flex gap-4">
                                         <button
-                                            onClick={() => handleInputChange('listingType', 'sale')}
-                                            className={`flex-1 py-4 rounded-xl font-semibold transition-all duration-300 ${formData.listingType === 'sale'
+                                            onClick={() => handleInputChange('listingType', 'buy')}
+                                            className={`flex-1 py-4 rounded-xl font-semibold transition-all duration-300 ${formData.listingType === 'buy'
                                                 ? 'bg-blue-600 text-white shadow-lg scale-105'
                                                 : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700'
                                                 }`}
@@ -422,6 +482,50 @@ export const SellPage: React.FC = () => {
                                             placeholder="94103"
                                             className="w-full px-4 py-3 rounded-xl bg-white dark:bg-zinc-800 border-2 border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white focus:border-blue-600 dark:focus:border-blue-400 focus:outline-none transition-colors"
                                         />
+                                    </div>
+                                </div>
+
+                                {/* Map Picker */}
+                                <div className="mt-8">
+                                    <label className="block text-sm font-semibold text-zinc-700 dark:text-zinc-300 mb-3">
+                                        Pin Location on Map *
+                                        <span className="text-xs font-normal text-zinc-500 ml-2">
+                                            (Tap the map to set coordinates for AI & Navigation)
+                                        </span>
+                                    </label>
+                                    <div className="h-64 rounded-2xl overflow-hidden border-2 border-zinc-200 dark:border-zinc-700 relative">
+                                        {isLoaded ? (
+                                            <GoogleMap
+                                                mapContainerStyle={{ width: '100%', height: '100%' }}
+                                                center={formData.latitude && formData.longitude ? { lat: formData.latitude, lng: formData.longitude } : mapCenter}
+                                                zoom={13}
+                                                onClick={(e) => {
+                                                    if (e.latLng) {
+                                                        handleInputChange('latitude', e.latLng.lat().toString()); // Storing as string in generic handler
+                                                        setFormData(prev => ({ ...prev, latitude: e.latLng!.lat(), longitude: e.latLng!.lng() }));
+                                                    }
+                                                }}
+                                                options={{
+                                                    styles: mapStyles,
+                                                    disableDefaultUI: true,
+                                                    zoomControl: true,
+                                                }}
+                                            >
+                                                {formData.latitude && formData.longitude && (
+                                                    <Marker position={{ lat: formData.latitude, lng: formData.longitude }} />
+                                                )}
+                                            </GoogleMap>
+                                        ) : (
+                                            <div className="w-full h-full flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 text-zinc-400">
+                                                Loading Maps...
+                                            </div>
+                                        )}
+                                        {formData.latitude && (
+                                            <div className="absolute bottom-4 left-4 right-4 bg-blue-600 text-white text-xs px-3 py-2 rounded-xl flex items-center justify-between shadow-lg">
+                                                <span>📍 Lat: {formData.latitude.toFixed(4)}, Lng: {formData.longitude?.toFixed(4)}</span>
+                                                <span className="font-bold">Location Set!</span>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
 
@@ -593,6 +697,57 @@ export const SellPage: React.FC = () => {
                                             ))}
                                         </div>
                                     )}
+                                    {/* Panorama Upload */}
+                                    <div className="mt-8">
+                                        <label className="block text-sm font-semibold text-zinc-700 dark:text-zinc-300 mb-3">
+                                            360° Panorama Photos (Optional)
+                                        </label>
+                                        <div className="border-2 border-dashed border-blue-300 dark:border-blue-700 rounded-2xl p-8 text-center hover:border-blue-500 dark:hover:border-blue-400 transition-colors bg-blue-50/30 dark:bg-blue-500/5">
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                multiple
+                                                onChange={handlePanoramaUpload}
+                                                className="hidden"
+                                                id="panorama-upload"
+                                            />
+                                            <label htmlFor="panorama-upload" className="cursor-pointer">
+                                                <span className="material-symbols-outlined text-[64px] text-blue-600 dark:text-blue-400 mb-4 block">
+                                                    360
+                                                </span>
+                                                <p className="text-zinc-700 dark:text-zinc-300 font-semibold mb-2">
+                                                    Click to upload 360° images
+                                                </p>
+                                                <p className="text-zinc-500 text-sm">
+                                                    Panoramic JPG or WEBP images
+                                                </p>
+                                            </label>
+                                        </div>
+
+                                        {/* Panorama Previews */}
+                                        {panoramaPreviews.length > 0 && (
+                                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                                                {panoramaPreviews.map((preview, index) => (
+                                                    <div key={index} className="relative group">
+                                                        <img
+                                                            src={preview}
+                                                            alt={`Panorama Preview ${index + 1}`}
+                                                            className="w-full h-32 object-cover rounded-xl"
+                                                        />
+                                                        <button
+                                                            onClick={() => removePanorama(index)}
+                                                            className="absolute top-2 right-2 size-8 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                                                        >
+                                                            <span className="material-symbols-outlined text-[18px]">close</span>
+                                                        </button>
+                                                        <span className="absolute bottom-2 left-2 px-2 py-1 bg-blue-600 text-white text-xs rounded-lg font-semibold">
+                                                            360° Photo
+                                                        </span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
 
                                 {/* Document Upload */}

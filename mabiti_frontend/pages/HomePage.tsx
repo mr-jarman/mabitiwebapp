@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Header } from '../components/Header';
-import { DottedSurface } from '../components/DottedSurface';
 import { useTheme } from '../services/ThemeContext';
 import { propertyService } from '../services/propertyService';
 import { Property } from '../types';
@@ -41,8 +40,9 @@ export const HomePage: React.FC = () => {
         }
     }, [featuredProperties.length]);
 
-    const formatPrice = (price: number) => {
-        if (price < 10000) {
+    const formatPrice = (property: Property) => {
+        const { price, listing_type } = property;
+        if (listing_type === 'rent') {
             return `$${price.toLocaleString()}/mo`;
         }
         return `$${(price / 1000000).toFixed(2)}M`;
@@ -60,9 +60,6 @@ export const HomePage: React.FC = () => {
 
     return (
         <div className="relative z-10 flex flex-col min-h-screen bg-zinc-50 dark:bg-black transition-colors duration-500 overflow-hidden">
-            {/* DottedSurface Background */}
-            <DottedSurface />
-
             <Header />
 
             {/* Main Content Container */}
@@ -96,7 +93,7 @@ export const HomePage: React.FC = () => {
                                         </h1>
                                         <div className="flex items-center gap-6 mb-6">
                                             <span className="text-white text-3xl font-bold">
-                                                {formatPrice(property.price)}
+                                                {formatPrice(property)}
                                             </span>
                                             <div className="flex gap-4 text-white/80">
                                                 <span className="flex items-center gap-1">
@@ -212,7 +209,7 @@ export const HomePage: React.FC = () => {
                                     />
                                     {/* Price Badge */}
                                     <div className="absolute top-4 right-4 px-4 py-2 bg-blue-600 text-white rounded-xl font-bold shadow-lg">
-                                        {formatPrice(property.price)}
+                                        {formatPrice(property)}
                                     </div>
                                     {/* Gradient Overlay */}
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>

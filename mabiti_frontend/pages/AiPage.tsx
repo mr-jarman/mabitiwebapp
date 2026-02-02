@@ -1,133 +1,504 @@
-import React, { useState, useEffect, useRef, memo } from 'react';
+import React, { useState, useEffect, useRef, memo, useMemo } from 'react';
+import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
 import { Header } from '../components/Header';
 import { LiquidGlassFilters, LiquidGlass } from '../components/LiquidGlass';
 import { DottedSurface } from '../components/DottedSurface';
+import { LiquidBackground } from '../components/LiquidBackground';
 import { useVisualizer } from '../services/VisualizerContext';
+import { aiService } from '../services/aiService';
+import { AiPropertyCard } from '../components/AiPropertyCard';
+import { Property } from '../types';
+import { useAuth } from '../services/AuthContext';
+import { VoiceWave } from '../components/VoiceWave';
 
-// Memoize stable components to prevent re-renders
-const MemoizedFilters = memo(LiquidGlassFilters);
-const MemoizedHeader = memo(Header);
+// Map Styles for a clean look (Silver/Dark theme)
+const mapStyles = [
+    {
+        featureType: "poi",
+        elementType: "labels",
+        stylers: [{ visibility: "off" }]
+    },
+    {
+        featureType: "transit",
+        elementType: "labels",
+        stylers: [{ visibility: "off" }]
+    }
+];
+
+interface Message {
+    id: string;
+    role: 'user' | 'ai';
+    text: string;
+    properties?: Property[];
+}
+
+interface PinnedLocation {
+    id: string;
+    lat: number;
+    lng: number;
+    label: string;
+}
 
 export const AiPage: React.FC = () => {
     const { setAnalyser: setGlobalAnalyser } = useVisualizer();
-    const [isCallActive, setIsCallActive] = useState(false);
+    const { user } = useAuth();
+
+    // Map State
+    const { isLoaded } = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY || '',
+        libraries: ['places']
+    });
+
+    const [map, setMap] = useState<google.maps.Map | null>(null);
+    const [center, setCenter] = useState({ lat: 51.5074, lng: -0.1278 }); // Default London
+    const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
+
+    // Chat State
+    const [isChatOpen, setIsChatOpen] = useState(false);
+    const [messages, setMessages] = useState<Message[]>([
+        {
+            id: 'welcome',
+            role: 'ai',
+            text: `Hello ${user?.username || 'there'}! I'm your advanced AI Real Estate Agent. I can help you find properties based on location, commute, budget, and even visual preferences. Toggle the chat to see the map better!`
+        }
+    ]);
     const [inputText, setInputText] = useState("");
-    const [analyser, setAnalyser] = useState<AnalyserNode | undefined>(undefined);
+    const [isLoading, setIsLoading] = useState(false);
 
+    // Manual Pinning State (Replaces separate Modal)
+    const [isPinningMode, setIsPinningMode] = useState(false);
+    const [pinnedLocations, setPinnedLocations] = useState<PinnedLocation[]>([]);
+
+    const [isCalling, setIsCalling] = useState(false);
     const audioContextRef = useRef<AudioContext | null>(null);
-    const streamRef = useRef<MediaStream | null>(null);
+    const audioStreamRef = useRef<MediaStream | null>(null);
 
-    const startAudioCapture = async () => {
+    const startCall = async () => {
         try {
             const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-            streamRef.current = stream;
+            audioStreamRef.current = stream;
 
             const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
             const source = audioContext.createMediaStreamSource(stream);
             const analyserNode = audioContext.createAnalyser();
-
             analyserNode.fftSize = 256;
             source.connect(analyserNode);
 
             audioContextRef.current = audioContext;
-            setAnalyser(analyserNode);
             setGlobalAnalyser(analyserNode);
-            setIsCallActive(true);
+            setIsCalling(true);
         } catch (err) {
-            console.error("Error accessing microphone:", err);
-            alert("Microphone access is required for call mode.");
+            console.error("Failed to access microphone:", err);
+            alert("Please allow microphone access to use the voice feature.");
         }
     };
 
-    const stopAudioCapture = () => {
-        if (streamRef.current) {
-            streamRef.current.getTracks().forEach(track => track.stop());
+    const stopCall = () => {
+        if (audioStreamRef.current) {
+            audioStreamRef.current.getTracks().forEach(track => track.stop());
         }
         if (audioContextRef.current) {
             audioContextRef.current.close();
         }
-        setAnalyser(undefined);
         setGlobalAnalyser(undefined);
-        setIsCallActive(false);
+        setIsCalling(false);
     };
 
-    const toggleCall = () => {
-        if (isCallActive) {
-            stopAudioCapture();
-        } else {
-            startAudioCapture();
-        }
+    const messagesEndRef = useRef<HTMLDivElement>(null);
+
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
 
     useEffect(() => {
-        return () => {
-            stopAudioCapture();
-            setGlobalAnalyser(undefined);
-        };
+        if (isChatOpen) {
+            scrollToBottom();
+        }
+    }, [messages, isChatOpen]);
+
+    // Collect all properties from chat history for markers
+    const allProperties = useMemo(() => {
+        const props: Property[] = [];
+        messages.forEach(msg => {
+            if (msg.properties) {
+                props.push(...msg.properties);
+            }
+        });
+        return props;
+    }, [messages]);
+
+    // Fit bounds when new properties arrive
+    useEffect(() => {
+        if (map && allProperties.length > 0) {
+            const bounds = new google.maps.LatLngBounds();
+            allProperties.forEach(p => {
+                if (p.latitude && p.longitude) {
+                    bounds.extend({ lat: p.latitude, lng: p.longitude });
+                }
+            });
+            // Also include pinned locations
+            pinnedLocations.forEach(p => bounds.extend({ lat: p.lat, lng: p.lng }));
+
+            map.fitBounds(bounds);
+        }
+    }, [map, allProperties, pinnedLocations]);
+
+    // Get User Location on Init
+    useEffect(() => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    setCenter({
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    });
+                },
+                () => console.log("Geolocation failed or denied")
+            );
+        }
     }, []);
 
+    const handleSendMessage = async () => {
+        if (!inputText.trim() && pinnedLocations.length === 0) return;
+
+        let displayMetrics = inputText;
+        if (pinnedLocations.length > 0) {
+            const tags = pinnedLocations.map(l => `[${l.label}]`).join(' ');
+            displayMetrics = `${tags} ${inputText}`;
+        }
+
+        const userMsg: Message = {
+            id: Date.now().toString(),
+            role: 'user',
+            text: displayMetrics
+        };
+
+        setMessages(prev => [...prev, userMsg]);
+        setInputText("");
+
+        const locationsToSend = pinnedLocations.map(l => ({ lat: l.lat, lng: l.lng }));
+        setPinnedLocations([]);
+        setIsPinningMode(false); // Exit pinning mode if active
+
+        setIsLoading(true);
+
+        try {
+            const data = await aiService.chat(userMsg.text, locationsToSend);
+            const aiMsg: Message = {
+                id: (Date.now() + 1).toString(),
+                role: 'ai',
+                text: data.response,
+                properties: data.properties
+            };
+            setMessages(prev => [...prev, aiMsg]);
+        } catch (error) {
+            const errorMsg: Message = {
+                id: (Date.now() + 1).toString(),
+                role: 'ai',
+                text: "I'm having trouble connecting to my brain right now."
+            };
+            setMessages(prev => [...prev, errorMsg]);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleMapClick = (e: google.maps.MapMouseEvent) => {
+        if (isPinningMode && e.latLng) {
+            const newLocation: PinnedLocation = {
+                id: Date.now().toString(),
+                lat: e.latLng.lat(),
+                lng: e.latLng.lng(),
+                label: `Pin ${pinnedLocations.length + 1}`
+            };
+            setPinnedLocations(prev => [...prev, newLocation]);
+            // Flash a message or toast here ideally
+            setIsChatOpen(true); // Open chat to show it was added
+        }
+        // If clicking a blank spot and chat is open on mobile, maybe close it?
+    };
+
+    const removeLocation = (id: string) => {
+        setPinnedLocations(prev => prev.filter(l => l.id !== id));
+    };
+
+    const handleKeyPress = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            handleSendMessage();
+        }
+    };
+
     return (
-        <div className="relative z-10 flex flex-col min-h-screen bg-transparent overflow-hidden">
-            <MemoizedFilters />
+        <div className="relative w-screen h-screen overflow-hidden bg-zinc-900 fixed inset-0">
+            <LiquidGlassFilters />
 
-            {/* DottedSurface now handles audio sampling internally via the analyser prop */}
-            <DottedSurface analyserNode={analyser} animated={true} />
+            <Header />
 
-            <MemoizedHeader />
+            {/* FULL SCREEN MAP */}
+            {isLoaded ? (
+                <div className="absolute inset-0 z-0 pointer-events-auto">
+                    <GoogleMap
+                        mapContainerStyle={{ width: '100%', height: '100%' }}
+                        center={center}
+                        zoom={13}
+                        onLoad={setMap}
+                        onClick={handleMapClick}
+                        options={{
+                            styles: mapStyles,
+                            disableDefaultUI: true,
+                            zoomControl: true,
+                        }}
+                    >
+                        {/* Property Markers */}
+                        {allProperties.map(prop => (
+                            prop.latitude && prop.longitude && (
+                                <Marker
+                                    key={prop.id}
+                                    position={{ lat: prop.latitude, lng: prop.longitude }}
+                                    onClick={() => setSelectedProperty(prop)}
+                                    animation={google.maps.Animation.DROP}
+                                />
+                            )
+                        ))}
 
-            <main className="flex-1 flex flex-col items-center justify-center p-6 pb-32">
-                <div className="max-w-2xl w-full text-center mb-12 relative z-10">
-                    <h1 className="text-zinc-900 dark:text-white text-5xl font-black tracking-tight mb-4 drop-shadow-2xl">
-                        Ready for a <span className="text-blue-600 dark:text-blue-400">Call?</span>
-                    </h1>
-                    <p className="text-zinc-600 dark:text-zinc-400 text-lg font-medium leading-relaxed">
-                        Connect with our AI specialized in real estate. Ask about market trends, property evaluations, or just start a conversation.
-                    </p>
+                        {/* Pinned User Locations */}
+                        {pinnedLocations.map(pin => (
+                            <Marker
+                                key={pin.id}
+                                position={{ lat: pin.lat, lng: pin.lng }}
+                                icon={{
+                                    url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                                }}
+                            />
+                        ))}
+
+                        {/* Info Window for Selected Property */}
+                        {selectedProperty && (
+                            <InfoWindow
+                                position={{ lat: selectedProperty.latitude!, lng: selectedProperty.longitude! }}
+                                onCloseClick={() => setSelectedProperty(null)}
+                            >
+                                <div className="p-2 min-w-[200px]">
+                                    <h3 className="font-bold text-gray-900">{selectedProperty.address}</h3>
+                                    <p className="text-sm text-gray-600">${selectedProperty.price}/mo</p>
+                                    <p className="text-xs text-blue-600 font-semibold">
+                                        {selectedProperty.beds}bd | {selectedProperty.baths}ba
+                                    </p>
+                                </div>
+                            </InfoWindow>
+                        )}
+                    </GoogleMap>
+
+                    {/* Feather Mask Overlay */}
+                    <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.3)_100%)]"></div>
                 </div>
+            ) : (
+                <div className="absolute inset-0 flex items-center justify-center text-white">Loading Map...</div>
+            )}
 
-                {/* Floating Interaction Bar */}
-                <div className="fixed bottom-10 left-1/2 -translate-x-1/2 w-full max-w-3xl px-6 z-50">
-                    <LiquidGlass variant="default" className="w-full flex items-center gap-3 p-2 pr-4 bg-white/40 dark:bg-zinc-900/40 border border-black/5 dark:border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.2)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-md">
-                        <button
-                            onClick={toggleCall}
-                            className={`size-12 rounded-full flex items-center justify-center transition-all duration-300 ${isCallActive
-                                ? 'bg-red-500 text-white animate-pulse'
-                                : 'bg-black/5 dark:bg-white/5 text-blue-600 dark:text-blue-400 hover:bg-black/10 dark:hover:bg-white/10'
-                                }`}
-                            title={isCallActive ? "End Call" : "Start Call"}
-                        >
-                            <span className="material-symbols-outlined text-[24px]">
-                                {isCallActive ? 'call_end' : 'call'}
-                            </span>
-                        </button>
 
-                        <input
-                            type="text"
-                            value={inputText}
-                            onChange={(e) => setInputText(e.target.value)}
-                            placeholder={isCallActive ? "AI is listening..." : "Ask AI about properties..."}
-                            className="flex-1 bg-transparent border-none text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:ring-0 text-lg py-3"
-                        />
+            {/* CHAT TOGGLE BUTTON (Floating) */}
+            <button
+                onClick={() => setIsChatOpen(!isChatOpen)}
+                className={`
+                    absolute z-30 bottom-6 left-6 
+                    bg-white dark:bg-zinc-900 text-zinc-800 dark:text-white
+                    p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110
+                    flex items-center gap-2 font-bold
+                `}
+            >
+                <span className="material-symbols-outlined">{isChatOpen ? 'visibility_off' : 'chat'}</span>
+                <span className="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 whitespace-nowrap">
+                    {isChatOpen ? 'Hide Chat' : 'Ask AI'}
+                </span>
+            </button>
 
-                        <button
-                            className={`size-12 rounded-2xl flex items-center justify-center transition-all ${inputText.trim()
-                                ? 'bg-white text-black scale-100 hover:scale-105 active:scale-95'
-                                : 'bg-white/5 text-zinc-600 scale-90 cursor-not-allowed'
-                                }`}
-                            disabled={!inputText.trim()}
-                        >
-                            <span className="material-symbols-outlined text-[24px]">send</span>
-                        </button>
+            {/* PINNING MODE INDICATOR */}
+            {isPinningMode && (
+                <div className="absolute top-24 left-1/2 -translate-x-1/2 z-30 bg-blue-600 text-white px-6 py-2 rounded-full shadow-lg animate-bounce cursor-default pointer-events-none">
+                    <span className="flex items-center gap-2">
+                        <span className="material-symbols-outlined">touch_app</span>
+                        Tap map to pin location
+                    </span>
+                </div>
+            )}
+
+            {/* CHAT PANEL (Drawer) - Messages Only */}
+            <div
+                className={`
+                    fixed top-0 right-0 h-full w-[450px] z-[60]
+                    transition-transform duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]
+                    ${isChatOpen ? 'translate-x-0' : 'translate-x-full'}
+                `}
+            >
+                <div className="w-full h-full pb-24">
+                    <LiquidGlass className="w-full h-full !rounded-l-3xl !rounded-r-none !p-0 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+                        <div className="relative h-full flex flex-col pt-24 pb-6 px-6 w-full">
+
+                            {/* Message List */}
+                            <div className="flex-1 overflow-y-auto mb-4 pr-2 space-y-6 scrollbar-thin scrollbar-thumb-zinc-500/50">
+                                {messages.map((msg) => (
+                                    <div key={msg.id} className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>
+                                        <div className={`
+                                    max-w-[90%] text-sm p-4 rounded-xl shadow-sm
+                                    ${msg.role === 'user'
+                                                ? 'bg-blue-600 text-white rounded-br-none'
+                                                : 'bg-zinc-100/90 dark:bg-zinc-800/90 text-zinc-800 dark:text-gray-200 rounded-bl-none'}
+                                `}>
+                                            {msg.text}
+                                        </div>
+
+                                        {msg.role === 'ai' && msg.properties && msg.properties.length > 0 && (
+                                            <div className="w-full mt-4">
+                                                <div className="flex flex-col gap-3">
+                                                    {msg.properties.slice(0, 3).map((prop: any) => (
+                                                        <div key={prop.id}
+                                                            onClick={() => {
+                                                                map?.panTo({ lat: prop.latitude, lng: prop.longitude });
+                                                                setSelectedProperty(prop);
+                                                            }}
+                                                            className="cursor-pointer hover:opacity-80 transition-opacity"
+                                                        >
+                                                            <AiPropertyCard property={prop} commute={prop.commute} />
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
+                                {isLoading && (
+                                    <div className="text-zinc-500 text-sm animate-pulse">Thinking...</div>
+                                )}
+                                <div ref={messagesEndRef} />
+                            </div>
+                        </div>
+                    </LiquidGlass>
+                </div>
+            </div>
+
+            {/* VOICE VISUALIZER WAVES */}
+            {isCalling && (
+                <div className="absolute bottom-0 left-0 right-0 z-50 pointer-events-none">
+                    <VoiceWave />
+                </div>
+            )}
+
+            {/* FLOATING INPUT AREA (Persistent) */}
+            <div className={`
+                fixed z-[70] bottom-8 transition-all duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)]
+                ${isChatOpen
+                    ? 'right-0 translate-x-0 w-[450px] px-6'
+                    : 'left-1/2 -translate-x-1/2 w-full max-w-2xl px-4'
+                }
+            `}>
+                {pinnedLocations.length > 0 && !isCalling && (
+                    <div className={`flex flex-wrap gap-2 mb-2 ${isChatOpen ? 'justify-end' : 'justify-center'}`}>
+                        {pinnedLocations.map(loc => (
+                            <div key={loc.id} className="bg-blue-500 text-white px-3 py-1 rounded-full text-xs flex items-center gap-1 shadow-lg animate-in zoom-in">
+                                <span>{loc.label}</span>
+                                <button onClick={() => removeLocation(loc.id)} className="hover:text-red-300">×</button>
+                            </div>
+                        ))}
+                    </div>
+                )}
+
+                <div className="relative w-full flex justify-center h-20 items-end">
+                    <LiquidGlass
+                        variant="nav"
+                        className={`
+                            transition-all duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] shadow-2xl overflow-hidden !p-0
+                            ${isCalling
+                                ? 'w-[280px] h-14 !rounded-full bg-red-500/10 border-red-500/40 shadow-[0_0_50px_rgba(239,68,68,0.2)]'
+                                : 'w-full h-14 !rounded-full border-gray-500/20 bg-black/5 dark:bg-black/20'
+                            }
+                        `}
+                    >
+                        <div className="relative w-full h-full">
+                            {/* Standard Content - Crosfade */}
+                            <div className={`
+                                flex items-center gap-2 w-full h-full px-2 transition-all duration-500
+                                ${isCalling ? 'opacity-0 scale-90 pointer-events-none translate-y-4' : 'opacity-100 scale-100 translate-y-0'}
+                            `}>
+                                <button
+                                    onClick={() => {
+                                        setIsPinningMode(!isPinningMode);
+                                        if (isChatOpen) setIsChatOpen(false);
+                                    }}
+                                    className={`p-3 rounded-full flex items-center justify-center transition-all 
+                                        ${isPinningMode ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/50' : 'hover:bg-white/10 text-zinc-400'}`}
+                                >
+                                    <span className="material-symbols-outlined">add_location_alt</span>
+                                </button>
+
+                                <textarea
+                                    value={inputText}
+                                    onChange={(e) => setInputText(e.target.value)}
+                                    onKeyDown={handleKeyPress}
+                                    placeholder={isPinningMode ? "Click map to pin location..." : "Ask AI properties..."}
+                                    className="flex-1 bg-transparent border-none focus:ring-0 text-white placeholder-zinc-400 resize-none h-[44px] px-2 py-2.5 leading-tight font-medium"
+                                    disabled={isLoading}
+                                    rows={1}
+                                />
+
+                                <div className="flex items-center gap-1">
+                                    <button
+                                        onClick={startCall}
+                                        className="p-3 rounded-full text-zinc-400 hover:text-blue-500 transition-all hover:bg-white/5 active:scale-90"
+                                    >
+                                        <span className="material-symbols-outlined">mic</span>
+                                    </button>
+
+                                    <button
+                                        onClick={handleSendMessage}
+                                        disabled={(!inputText.trim() && pinnedLocations.length === 0) || isLoading}
+                                        className={`
+                                            p-2 rounded-full transition-all duration-300
+                                            ${(inputText.trim() || pinnedLocations.length > 0) && !isLoading
+                                                ? 'bg-blue-600 text-white shadow-lg'
+                                                : 'text-zinc-500'
+                                            }
+                                        `}
+                                    >
+                                        <span className="material-symbols-outlined">send</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Calling Content - Crosfade */}
+                            <div
+                                onClick={stopCall}
+                                className={`
+                                    absolute inset-0 flex items-center justify-center cursor-pointer transition-all duration-500
+                                    ${isCalling ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-75 -translate-y-4 pointer-events-none'}
+                                `}
+                            >
+                                <div className="flex items-center gap-4 px-4 whitespace-nowrap">
+                                    <div className="relative flex">
+                                        <div className="absolute inset-0 size-3 bg-red-500 rounded-full animate-ping opacity-75"></div>
+                                        <div className="relative size-3 bg-red-500 rounded-full shadow-[0_0_15px_rgba(239,68,68,1)]"></div>
+                                    </div>
+                                    <span className="text-white font-black uppercase tracking-[0.3em] text-[11px]">End Mabiti Call</span>
+                                    <span className="material-symbols-outlined text-white text-3xl">call_end</span>
+                                </div>
+                            </div>
+                        </div>
                     </LiquidGlass>
 
-                    {isCallActive && (
-                        <div className="absolute -top-12 left-1/2 -translate-x-1/2 flex items-center gap-2">
-                            <div className="size-2 rounded-full bg-red-500 animate-ping"></div>
-                            <span className="text-red-500 font-bold text-xs uppercase tracking-widest">Live Audio Integration</span>
-                        </div>
-                    )}
+                    {/* Floating listening indicator */}
+                    <div className={`
+                        absolute -top-8 left-1/2 -translate-x-1/2 transition-all duration-500
+                        ${isCalling ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}
+                    `}>
+                        <span className="text-zinc-500 text-[10px] font-black uppercase tracking-[0.6em] animate-pulse whitespace-nowrap">
+                            Assistant is listening...
+                        </span>
+                    </div>
                 </div>
-            </main>
+            </div>
+
         </div>
     );
 };

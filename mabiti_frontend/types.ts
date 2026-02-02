@@ -38,6 +38,8 @@ export interface Property {
   agent: PropertyAgent;
   neighborhood: string;
   features: string[];
+  panorama_images?: string[];
+  listing_type: 'buy' | 'rent';
 }
 
 export interface PropertiesData {

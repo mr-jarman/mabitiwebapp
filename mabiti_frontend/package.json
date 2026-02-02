@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@google/genai": "^1.38.0",
+    "@react-google-maps/api": "^2.20.8",
     "axios": "^1.13.4",
     "ogl": "^1.0.11",
     "react": "^19.2.4",

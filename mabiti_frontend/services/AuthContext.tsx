@@ -6,6 +6,7 @@ interface AuthContextType {
     isAuthenticated: boolean;
     user: User | null;
     login: (username: string, password: string) => Promise<boolean>;
+    register: (username: string, email: string, password: string) => Promise<{ success: boolean; message: string }>;
     logout: () => void;
 }
 
@@ -14,12 +15,17 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
     const [user, setUser] = useState<User | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        const token = localStorage.getItem('accessToken');
-        if (token) {
-            checkAuth();
-        }
+        const initAuth = async () => {
+            const token = localStorage.getItem('accessToken');
+            if (token) {
+                await checkAuth();
+            }
+            setLoading(false);
+        };
+        initAuth();
     }, []);
 
     const checkAuth = async () => {
@@ -46,6 +52,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
     };
 
+    const register = async (username: string, email: string, password: string): Promise<{ success: boolean; message: string }> => {
+        try {
+            await api.post('auth/register/', { username, email, password });
+            return { success: true, message: 'Registration successful! Please login.' };
+        } catch (error: any) {
+            console.error('Registration failed:', error);
+            const message = error.response?.data?.username?.[0] ||
+                error.response?.data?.email?.[0] ||
+                'Registration failed. Please try again.';
+            return { success: false, message };
+        }
+    };
+
     const logout = () => {
         setIsAuthenticated(false);
         setUser(null);
@@ -53,8 +72,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         localStorage.removeItem('refreshToken');
     };
 
+    if (loading) {
+        return <div className="min-h-screen flex items-center justify-center bg-zinc-50 dark:bg-black text-zinc-400">Loading...</div>;
+    }
+
     return (
-        <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
+        <AuthContext.Provider value={{ isAuthenticated, user, login, register, logout }}>
             {children}
         </AuthContext.Provider>
     );

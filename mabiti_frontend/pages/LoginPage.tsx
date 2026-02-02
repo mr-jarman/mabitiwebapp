@@ -13,7 +13,7 @@ export const LoginPage: React.FC = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
     const [isLoggingIn, setIsLoggingIn] = useState(false);
-    const { login } = useAuth();
+    const { login, register } = useAuth();
     const navigate = useNavigate();
     const { theme, toggleTheme } = useTheme();
 
@@ -22,12 +22,30 @@ export const LoginPage: React.FC = () => {
         setError('');
 
         if (isRegisterMode) {
-            // Registration logic - simplified for now as user requested manual admin creation
+            // Registration logic
             if (password !== confirmPassword) {
                 setError('Passwords do not match');
                 return;
             }
-            setError('Registration is currently disabled. Please contact the administrator.');
+            setIsLoggingIn(true);
+            try {
+                const result = await register(username, email, password);
+                setIsLoggingIn(false);
+                if (result.success) {
+                    setError('Registration successful! Please login.');
+                    setIsRegisterMode(false);
+                    // Clear fields
+                    setUsername('');
+                    setEmail('');
+                    setPassword('');
+                    setConfirmPassword('');
+                } else {
+                    setError(result.message);
+                }
+            } catch (err) {
+                setIsLoggingIn(false);
+                setError('Registration failed. Please try again.');
+            }
         } else {
             // Login logic
             setIsLoggingIn(true);
@@ -62,8 +80,8 @@ export const LoginPage: React.FC = () => {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-full blur-3xl animate-pulse-slow"></div>
             </div>
 
-            {/* DottedSurface */}
-            <DottedSurface orientation={isLoggingIn ? 'transitioning' : 'horizontal'} />
+            {/* Dotted Surface Background */}
+            <DottedSurface className="opacity-40" animated={true} />
 
             {/* Theme Toggle */}
             <div className="absolute top-8 right-8 z-20">
@@ -83,7 +101,7 @@ export const LoginPage: React.FC = () => {
                 <div className="w-full max-w-md perspective-1000">
                     {/* Flip Card Container */}
                     <div
-                        className={`relative transition-all duration-700 transform-style-3d ${isRegisterMode ? 'rotate-y-180' : ''
+                        className={`relative grid grid-cols-1 grid-rows-1 transition-all duration-700 transform-style-3d ${isRegisterMode ? 'rotate-y-180' : ''
                             }`}
                         style={{
                             transformStyle: 'preserve-3d',
@@ -92,18 +110,13 @@ export const LoginPage: React.FC = () => {
                     >
                         {/* Login Side */}
                         <div
-                            className="backface-hidden"
+                            className={`backface-hidden transition-all duration-300 col-start-1 row-start-1 ${!isRegisterMode ? 'z-10 pointer-events-auto' : 'z-0 pointer-events-none'}`}
                             style={{
                                 backfaceVisibility: 'hidden',
                                 WebkitBackfaceVisibility: 'hidden'
                             }}
                         >
-                            <div className="relative rounded-3xl p-10 bg-white/70 dark:bg-black/60 border border-white/20 dark:border-white/10 shadow-2xl backdrop-blur-xl hover:shadow-blue-500/20 transition-all duration-500">
-                                {/* Animated border gradient */}
-                                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20 opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-
-                                {/* Gradient Overlay */}
-                                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/40 to-transparent dark:from-white/5 dark:to-transparent pointer-events-none"></div>
+                            <div className="relative rounded-3xl p-10">
 
                                 <div className="relative z-10">
                                     {/* Logo with Animation */}
@@ -187,7 +200,7 @@ export const LoginPage: React.FC = () => {
                                                 onClick={toggleMode}
                                                 className="font-bold text-blue-600 dark:text-blue-400 hover:underline hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
                                             >
-                                                Contact Support
+                                                Create
                                             </button>
                                         </p>
                                     </div>
@@ -197,7 +210,7 @@ export const LoginPage: React.FC = () => {
 
                         {/* Register Side */}
                         <div
-                            className="absolute inset-0 backface-hidden rotate-y-180"
+                            className={`relative backface-hidden transition-all duration-300 col-start-1 row-start-1 ${isRegisterMode ? 'z-10 pointer-events-auto' : 'z-0 pointer-events-none'}`}
                             style={{
                                 backfaceVisibility: 'hidden',
                                 WebkitBackfaceVisibility: 'hidden',
@@ -275,7 +288,7 @@ export const LoginPage: React.FC = () => {
                                         {/* Confirm Password Input */}
                                         <div className="relative group">
                                             <span className="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-zinc-400 dark:text-zinc-500 group-focus-within:text-purple-600 dark:group-focus-within:text-purple-400 transition-colors text-[20px]">
-                                                lock
+                                                lock_reset
                                             </span>
                                             <input
                                                 type="password"

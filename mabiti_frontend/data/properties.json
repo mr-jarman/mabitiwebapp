@@ -9,6 +9,7 @@
             "baths": 2,
             "sqft": 1250,
             "built": 2018,
+            "listing_type": "buy",
             "description": "Experience modern luxury in the heart of the Mission District. This stunning 2-bedroom residence features an open-concept living area bathed in natural light, boasting floor-to-ceiling windows with panoramic city views. The chef's kitchen is equipped with top-of-the-line Viking appliances, custom cabinetry, and a spacious quartz island perfect for entertaining. The primary suite offers a serene retreat with a spa-like ensuite bath featuring a soaking tub and rainfall shower.",
             "images": {
                 "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
@@ -46,6 +47,7 @@
             "baths": 3,
             "sqft": 2400,
             "built": 2020,
+            "listing_type": "buy",
             "description": "Spectacular penthouse living awaits in this architectural masterpiece. Soaring 12-foot ceilings, floor-to-ceiling windows, and two private terraces offer breathtaking views of the Golden Gate Bridge and Bay. The gourmet kitchen features premium Miele appliances, Italian marble countertops, and custom millwork throughout.",
             "images": {
                 "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
@@ -83,6 +85,7 @@
             "baths": 2,
             "sqft": 1800,
             "built": 1905,
+            "listing_type": "buy",
             "description": "Meticulously restored Victorian gem in the heart of Noe Valley. This classic beauty combines original period details with modern amenities. High ceilings, original hardwood floors, and ornate crown molding throughout. Updated kitchen and baths while preserving the home's historic charm.",
             "images": {
                 "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
@@ -120,6 +123,7 @@
             "baths": 1,
             "sqft": 1100,
             "built": 2015,
+            "listing_type": "buy",
             "description": "True loft living in a converted warehouse. This 5th-floor unit features original brick walls, exposed timber beams, and dramatic concrete floors. The open-plan layout is perfect for artists or professionals seeking a creative space.",
             "images": {
                 "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
@@ -157,6 +161,7 @@
             "baths": 1,
             "sqft": 850,
             "built": 2016,
+            "listing_type": "rent",
             "description": "Luxurious high-rise living at Lumina. This waterfront-facing unit offers world-class amenities and unparalleled finishes. Enjoy access to a residents' lounge, rooftop terrace with BBQ area, and a state-of-the-art fitness center.",
             "images": {
                 "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
@@ -174,6 +179,9 @@
                 "email": "michael.chen@mabiti.com"
             },
             "neighborhood": "San Francisco Rincon Hill",
+            "panorama_images": [
+                "/Images/360/shot-panoramic-composition-living-room.jpg"
+            ],
             "features": [
                 "Water views",
                 "Floor-to-ceiling windows",
@@ -194,6 +202,7 @@
             "baths": 1,
             "sqft": 1300,
             "built": 1912,
+            "listing_type": "rent",
             "description": "Charming Edwardian flat with original architectural details. Rent this piece of San Francisco history featuring high ceilings, pocket doors, and a decorative fireplace. Just steps from the Panhandle and Golden Gate Park.",
             "images": {
                 "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
@@ -231,6 +240,7 @@
             "baths": 3.5,
             "sqft": 3100,
             "built": 2022,
+            "listing_type": "buy",
             "description": "Perched on Twin Peaks, this modernist masterpiece offers 270-degree views of the City, Bay, and Ocean. Multi-level living with floor-to-ceiling glass, a dedicated media room, and a wrap-around deck.",
             "images": {
                 "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
@@ -268,6 +278,7 @@
             "baths": 2,
             "sqft": 1450,
             "built": 1928,
+            "listing_type": "rent",
             "description": "Exquisite Marina District condo steps from the Palace of Fine Arts. Recently renovated with top-tier finishes while maintaining Art Deco charm. Sprawling floor plan with a chef's kitchen and shared rooftop deck with Golden Gate views.",
             "images": {
                 "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
@@ -305,6 +316,7 @@
             "baths": 1,
             "sqft": 550,
             "built": 1940,
+            "listing_type": "rent",
             "description": "Live like a local in North Beach. This cozy studio is centrally located near the city's best cafes, restaurants, and jazz bars. Perfect for those who value location above all else.",
             "images": {
                 "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
@@ -342,6 +354,7 @@
             "baths": 1.5,
             "sqft": 1200,
             "built": 2018,
+            "listing_type": "rent",
             "description": "Stunning top-floor loft in the trendy Dogpatch neighborhood. Massive double-height windows provide incredible city skyline views. Modern kitchen with gas range and a spacious mezza-nine level bedroom.",
             "images": {
                 "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
@@ -379,6 +392,7 @@
             "baths": 2,
             "sqft": 1600,
             "built": 1950,
+            "listing_type": "buy",
             "description": "Spacious and bright family home in the desirable Outer Sunset. Features a large backyard, updated kitchen, and a finished basement perfect for a home office or play area. Close to Ocean Beach and Golden Gate Park.",
             "images": {
                 "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
@@ -416,6 +430,7 @@
             "baths": 2.5,
             "sqft": 1700,
             "built": 2010,
+            "listing_type": "buy",
             "description": "Sophisticated condo living on iconic Lombard Street. Enjoy stunning Bay and Alcatraz views from your private balcony. Features include a chef's kitchen, spa-like baths, and access to a shared rooftop terrace.",
             "images": {
                 "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
@@ -453,6 +468,7 @@
             "baths": 3,
             "sqft": 2000,
             "built": 2017,
+            "listing_type": "buy",
             "description": "Modern living in vibrant Bernal Heights. This home boasts an open floor plan, high-end finishes, and a walk-out deck with city views. Enjoy easy access to local shops, parks, and restaurants.",
             "images": {
                 "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
@@ -490,6 +506,7 @@
             "baths": 4.5,
             "sqft": 4000,
             "built": 1920,
+            "listing_type": "buy",
             "description": "Grand historic home in prestigious Presidio Heights. This elegant residence features formal living and dining rooms, a renovated chef's kitchen, and a lush private garden. Steps from the Presidio National Park.",
             "images": {
                 "hero": "https://lh3.googleusercontent.com/aida-public/AB6AXuAQbH6QbDtOMahlsoacgvonUGTg8UZGHFyVd25s45epriDD5-8h8wezviG-oTTVzLUmvwt7TsBZjfWzbqcupf7pVPwb515waykZo635AM5hXPIrybm61pGmrxEYbFSKsEZJl-tIDsW2TwoM-gjBrbAPZZGV_cmkoqVTY29GaRLFUi8inzEEsj8K-CM8Fx_d6GJnAQPvYYi6Pk0fRJKbmpAj_XzhOG6gO_BxDzgv4UyN2rihDYRhbQ9OyW033AYITpEvOeC3EDlFG0Xa",
