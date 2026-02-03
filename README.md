@@ -63,7 +63,7 @@ cd mabitiwebapp
    ```
 3. Set up environment variables:
    - Copy `.env.example` to `.env`
-   - Fill in your `VITE_GEMINI_API_KEY` and `VITE_GOOGLE_MAPS_API_KEY`.
+   - Fill in your `GEMINI_API_KEY` and `VITE_GOOGLE_MAPS_API_KEY`.
 4. Start the development server:
    ```bash
    npm run dev
