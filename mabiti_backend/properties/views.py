@@ -1,8 +1,8 @@
 from rest_framework import viewsets, permissions, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from .models import Property
-from .serializers import PropertySerializer
+from .models import Property, Rental
+from .serializers import PropertySerializer, RentalSerializer
 
 class IsAdminOrReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):
@@ -42,3 +42,14 @@ class PropertyViewSet(viewsets.ModelViewSet):
         
         status_str = "visible" if property_obj.is_visible else "hidden"
         return Response({"status": f"Property is now {status_str}", "is_visible": property_obj.is_visible})
+
+class RentalViewSet(viewsets.ModelViewSet):
+    serializer_class = RentalSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        # Return only rentals belonging to the current user
+        return Rental.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

@@ -8,6 +8,7 @@ import { PanoramaViewer } from '../components/PanoramaViewer';
 import { LiquidGlass, LiquidGlassFilters } from '../components/LiquidGlass';
 
 import { propertyService } from '../services/propertyService';
+import { rentalService } from '../services/rentalService';
 
 const MemoizedFilters = memo(LiquidGlassFilters);
 const MemoizedHeader = memo(Header);
@@ -233,6 +234,12 @@ export const PropertyDetailPage: React.FC = () => {
                                                     }`}>
                                                     For {property.listing_type === 'buy' ? 'Buy' : 'Rent'}
                                                 </span>
+                                                {property.has_online_lock && (
+                                                    <span className="px-4 py-1.5 text-sm font-semibold rounded-full tracking-wide uppercase shrink-0 border bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-500/30 flex items-center gap-2">
+                                                        <span className="material-symbols-outlined text-[18px]">vpn_key</span>
+                                                        Digital Key Supported
+                                                    </span>
+                                                )}
                                             </div>
                                         </div>
 
@@ -374,6 +381,9 @@ export const PropertyDetailPage: React.FC = () => {
                             {/* Sidebar Area */}
                             <div className="lg:col-span-4">
                                 <div className="sticky top-28 flex flex-col gap-6">
+                                    {property.listing_type === 'rent' && (
+                                        <RentalBooking property={property} />
+                                    )}
 
                                     {/* Agent Card */}
                                     <AgentCard agent={property.agent} />
@@ -520,13 +530,84 @@ const AgentCard: React.FC<{ agent: any }> = ({ agent }) => (
                 Contact Agent
             </button>
         </div>
-        <div className="mt-6 pt-6 border-t border-black/5 dark:border-white/5 relative z-10">
-            <p className="text-xs text-zinc-500 text-center mb-4 font-medium uppercase tracking-wide">Or send a quick message</p>
-            <textarea className="glass-input w-full rounded-xl p-3 text-sm resize-none bg-black/5 dark:bg-black/40 border-black/5 dark:border-white/10 text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-500 focus:bg-white dark:focus:bg-black/60 transition-colors" placeholder={`Hi ${agent.name.split(' ')[0]}, I'm interested in this property...`} rows={3}></textarea>
-            < button className="mt-3 text-blue-600 dark:text-blue-400 text-sm font-bold w-full text-center hover:text-blue-500 dark:hover:text-blue-300 transition-colors" > Send Message</button >
-        </div >
-    </div >
+    </div>
 );
+
+const RentalBooking: React.FC<{ property: Property }> = ({ property }) => {
+    const [days, setDays] = useState(1);
+    const [pricePerDay, setPricePerDay] = useState(Math.round(property.price / 30));
+    const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
+
+    const totalPrice = days * pricePerDay;
+
+    const handleRent = async () => {
+        setIsLoading(true);
+        try {
+            const startDate = new Date();
+            const endDate = new Date();
+            endDate.setDate(startDate.getDate() + days);
+
+            await rentalService.create({
+                property: property.id,
+                start_date: startDate.toISOString().split('T')[0],
+                end_date: endDate.toISOString().split('T')[0],
+                days: days,
+                total_price: totalPrice
+            });
+            alert('Rental successful!');
+            navigate('/my-rentals');
+        } catch (error) {
+            console.error('Error creating rental:', error);
+            alert('Failed to create rental. Please log in first.');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    return (
+        <div className="glass-panel rounded-3xl p-6 relative overflow-hidden bg-white/40 dark:bg-zinc-900/40 border-black/5 dark:border-white/10 shadow-xl backdrop-blur-md">
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-500 to-emerald-500"></div>
+            <h3 className="text-xl font-bold text-black dark:text-white mb-6">Rent this Home</h3>
+
+            <div className="flex flex-col gap-4 mb-6">
+                <div>
+                    <label className="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-2 block">Number of Days</label>
+                    <input
+                        type="number"
+                        min="1"
+                        value={days}
+                        onChange={(e) => setDays(parseInt(e.target.value) || 1)}
+                        className="glass-input w-full rounded-xl p-3 bg-black/5 dark:bg-black/40 border-black/5 dark:border-white/10 text-black dark:text-white"
+                    />
+                </div>
+                <div>
+                    <label className="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-2 block">Price per Day ($)</label>
+                    <input
+                        type="number"
+                        min="1"
+                        value={pricePerDay}
+                        onChange={(e) => setPricePerDay(parseInt(e.target.value) || 1)}
+                        className="glass-input w-full rounded-xl p-3 bg-black/5 dark:bg-black/40 border-black/5 dark:border-white/10 text-black dark:text-white"
+                    />
+                </div>
+            </div>
+
+            <div className="flex justify-between items-center mb-6 pt-4 border-t border-black/5 dark:border-white/5">
+                <span className="text-zinc-500 font-medium">Total Price</span>
+                <span className="text-2xl font-bold text-black dark:text-white">${totalPrice.toLocaleString()}</span>
+            </div>
+
+            <button
+                onClick={handleRent}
+                disabled={isLoading}
+                className="flex w-full cursor-pointer items-center justify-center rounded-xl h-12 px-4 bg-green-600 hover:bg-green-700 text-white font-bold tracking-tight transition-all shadow-lg disabled:opacity-50"
+            >
+                {isLoading ? 'Processing...' : 'Rent Now'}
+            </button>
+        </div>
+    );
+};
 
 const SimilarHomeItem: React.FC<{ price: string, stats: string, image: string }> = ({ price, stats, image }) => (
     <div className="glass-panel p-3 rounded-xl flex gap-3 hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer group bg-white/40 dark:bg-black/40 border-black/5 dark:border-white/10 shadow-sm">

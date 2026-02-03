@@ -40,6 +40,7 @@ export interface Property {
   features: string[];
   panorama_images?: string[];
   listing_type: 'buy' | 'rent';
+  has_online_lock: boolean;
 }
 
 export interface PropertiesData {

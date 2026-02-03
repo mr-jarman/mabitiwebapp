@@ -28,6 +28,7 @@ interface PropertyData {
     documents: File[];
     latitude: number | null;
     longitude: number | null;
+    hasOnlineLock: boolean;
     contactName: string;
     contactEmail: string;
     contactPhone: string;
@@ -67,6 +68,7 @@ export const SellPage: React.FC = () => {
         documents: [],
         latitude: null,
         longitude: null,
+        hasOnlineLock: false,
         contactName: user?.username || '',
         contactEmail: user?.email || '',
         contactPhone: '',
@@ -217,6 +219,7 @@ export const SellPage: React.FC = () => {
                 listing_type: formData.listingType,
                 latitude: formData.latitude,
                 longitude: formData.longitude,
+                has_online_lock: formData.hasOnlineLock,
                 is_visible: true
             };
 
@@ -249,6 +252,7 @@ export const SellPage: React.FC = () => {
                 documents: [],
                 latitude: null,
                 longitude: null,
+                hasOnlineLock: false,
                 contactName: '',
                 contactEmail: '',
                 contactPhone: '',
@@ -375,6 +379,28 @@ export const SellPage: React.FC = () => {
                                         >
                                             For Rent
                                         </button>
+                                    </div>
+                                </div>
+
+                                <div className="mt-8">
+                                    <div
+                                        onClick={() => setFormData(prev => ({ ...prev, hasOnlineLock: !prev.hasOnlineLock }))}
+                                        className={`p-6 rounded-2xl border-2 transition-all duration-300 flex items-center justify-between cursor-pointer ${formData.hasOnlineLock
+                                            ? 'border-blue-600 bg-blue-50 dark:bg-blue-500/10 shadow-lg'
+                                            : 'border-zinc-200 dark:border-zinc-700 hover:border-blue-400'}`}
+                                    >
+                                        <div className="flex items-center gap-4">
+                                            <div className={`size-12 rounded-xl flex items-center justify-center transition-all ${formData.hasOnlineLock ? 'bg-blue-600 text-white shadow-lg' : 'bg-zinc-200 dark:bg-zinc-800 text-zinc-400'}`}>
+                                                <span className="material-symbols-outlined text-[28px]">{formData.hasOnlineLock ? 'lock_open' : 'lock'}</span>
+                                            </div>
+                                            <div>
+                                                <h4 className="font-bold text-zinc-900 dark:text-white">Smart Lock Support</h4>
+                                                <p className="text-sm text-zinc-500">Allow digital keys and remote unlocking for this property</p>
+                                            </div>
+                                        </div>
+                                        <div className={`w-14 h-8 rounded-full relative transition-colors duration-300 ${formData.hasOnlineLock ? 'bg-blue-600' : 'bg-zinc-300 dark:bg-zinc-700'}`}>
+                                            <div className={`absolute top-1 size-6 bg-white rounded-full shadow-md transition-all duration-300 ${formData.hasOnlineLock ? 'right-1' : 'left-1'}`}></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -936,8 +962,8 @@ export const SellPage: React.FC = () => {
                             )}
                         </div>
                     </div>
-                </div>
-            </main>
+                </div >
+            </main >
 
             <style>{`
                 @keyframes fadeIn {
@@ -955,6 +981,6 @@ export const SellPage: React.FC = () => {
                     animation: fadeIn 0.4s ease-out;
                 }
             `}</style>
-        </div>
+        </div >
     );
 };

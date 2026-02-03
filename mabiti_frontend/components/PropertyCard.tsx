@@ -21,15 +21,21 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                {/* 360 Indicator */}
-                {property.panorama_images && property.panorama_images.length > 0 && (
-                    <div className="absolute top-12 right-4 z-10">
+                {/* 360/SmartLock Indicators */}
+                <div className="absolute top-12 right-4 z-10 flex flex-col gap-2 items-end">
+                    {property.has_online_lock && (
+                        <div className="bg-blue-600/90 dark:bg-blue-500/80 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg border border-white/20">
+                            <span className="material-symbols-outlined text-[18px] text-white">vpn_key</span>
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-white">Digital Key</span>
+                        </div>
+                    )}
+                    {property.panorama_images && property.panorama_images.length > 0 && (
                         <div className="bg-white/90 dark:bg-black/70 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg border border-white/20">
                             <span className="material-symbols-outlined text-[18px] text-blue-600 dark:text-blue-400">360</span>
                             <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-900 dark:text-white">360° View</span>
                         </div>
-                    </div>
-                )}
+                    )}
+                </div>
                 {/* Price Badge */}
                 <div className="absolute top-4 left-4">
                     <div className="bg-blue-600 dark:bg-blue-500 text-white px-4 py-2 rounded-full font-bold text-lg shadow-lg">

@@ -217,12 +217,12 @@ export const LoginPage: React.FC = () => {
                                 transform: 'rotateY(180deg)'
                             }}
                         >
-                            <div className="relative rounded-3xl p-10 bg-white/70 dark:bg-black/60 border border-white/20 dark:border-white/10 shadow-2xl backdrop-blur-xl hover:shadow-purple-500/20 transition-all duration-500">
+                            <div className="relative rounded-3xl p-10 catransition-all duration-500">
                                 {/* Animated border gradient */}
-                                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-purple-500/20 via-transparent to-blue-500/20 opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                                <div className="absolute inset-0"></div>
 
                                 {/* Gradient Overlay */}
-                                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/40 to-transparent dark:from-white/5 dark:to-transparent pointer-events-none"></div>
+                                <div className="absolute inset-0 rounded-3xl"></div>
 
                                 <div className="relative z-10">
                                     {/* Logo */}

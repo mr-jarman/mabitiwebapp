@@ -14,7 +14,8 @@ export const Header: React.FC = memo(() => {
         { label: 'Home', path: '/home' },
         { label: 'Buy', path: '/buy' },
         { label: 'Rent', path: '/rent' },
-        { label: 'Sell', path: '/sell' }
+        { label: 'Sell', path: '/sell' },
+        { label: 'My Rentals', path: '/my-rentals' }
     ];
 
     return (
@@ -33,8 +34,8 @@ export const Header: React.FC = memo(() => {
             </Link>
 
             {/* Center Floating Nav */}
-            <div className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-                <LiquidGlass variant="nav" className={`transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${isSearchOpen ? 'w-[500px]' : 'w-[400px]'}`}>
+            <div className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-full max-w-[90vw] md:max-w-none flex justify-center">
+                <LiquidGlass variant="nav" className={`transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${isSearchOpen ? 'w-full md:w-[500px]' : 'w-auto min-w-[300px] md:w-[400px]'}`}>
                     <div className="relative flex items-center w-full overflow-hidden">
 
                         {/* Nav Links Layer */}
@@ -115,9 +116,11 @@ export const Header: React.FC = memo(() => {
                     <div className="w-px h-4 bg-zinc-300 dark:bg-white/10 mx-1"></div>
                     {isAuthenticated ? (
                         <>
-                            <span className="text-zinc-600 dark:text-zinc-300 text-sm font-medium px-2">
-                                Hi, {user?.username} {user?.is_admin && <span className="text-[10px] bg-blue-500/10 text-blue-500 px-1.5 py-0.5 rounded-full uppercase ml-1">Admin</span>}
-                            </span>
+                            <Link to="/profile" className="group flex items-center">
+                                <span className="text-zinc-600 dark:text-zinc-300 text-sm font-medium px-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                    Hi, {user?.username} {user?.is_admin && <span className="text-[10px] bg-blue-500/10 text-blue-500 px-1.5 py-0.5 rounded-full uppercase ml-1">Admin</span>}
+                                </span>
+                            </Link>
                             <div className="w-px h-4 bg-zinc-300 dark:bg-white/10 mx-1"></div>
                             <button
                                 onClick={logout}

@@ -29,6 +29,12 @@ export const AiPropertyCard: React.FC<AiPropertyCardProps> = ({ property, commut
                     <p className="text-xs opacity-90">{property.beds} Beds • {property.baths} Baths</p>
                 </div>
 
+                {property.has_online_lock && (
+                    <div className="absolute top-3 left-3 bg-blue-600 text-white text-[10px] px-2 py-0.5 rounded-full flex items-center gap-1 shadow-md z-10 font-bold uppercase tracking-wider">
+                        <span className="material-symbols-outlined text-[10px]">vpn_key</span>
+                        Digital
+                    </div>
+                )}
                 {commute && (
                     <div className="absolute top-3 right-3 bg-blue-600 text-white text-xs px-2 py-1 rounded-full flex items-center gap-1 shadow-md">
                         <span className="material-symbols-outlined text-[10px]">commute</span>

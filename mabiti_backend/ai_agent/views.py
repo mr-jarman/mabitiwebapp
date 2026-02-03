@@ -6,6 +6,7 @@ from properties.models import Property
 from properties.serializers import PropertySerializer
 import logging
 import json
+import base64
 
 logger = logging.getLogger(__name__)
 
@@ -144,10 +145,32 @@ class AgentChatView(APIView):
         # Pass location context to AI if available
         loc_debug = f"{len(locations)} locations pinned" if locations else None
         
-        ai_response = gemini.generate_chat_response(user_message, context_data, location_context=loc_debug)
+        # NEW: Handle voice mode
+        is_voice = request.data.get('is_voice', False)
+        
+        # NEW: Handle Audio Input (Live Call)
+        audio_base64 = request.data.get('audio')
+        user_audio_bytes = None
+        if audio_base64:
+            try:
+                # Remove header if present
+                if "base64," in audio_base64:
+                    audio_base64 = audio_base64.split("base64,")[1]
+                user_audio_bytes = base64.b64decode(audio_base64)
+            except Exception as e:
+                logger.error(f"Error decoding user audio: {e}")
+
+        ai_response, audio_data = gemini.generate_chat_response(
+            user_message, 
+            context_data, 
+            location_context=loc_debug,
+            want_audio=is_voice,
+            user_audio_bytes=user_audio_bytes
+        )
 
         return Response({
             "response": ai_response,
-            "properties": context_data, # Frontend will display first one or summary string
+            "properties": context_data,
+            "audio": audio_data,
             "intent_debug": intent
         })

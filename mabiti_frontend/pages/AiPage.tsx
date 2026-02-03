@@ -73,6 +73,52 @@ export const AiPage: React.FC = () => {
     const [isCalling, setIsCalling] = useState(false);
     const audioContextRef = useRef<AudioContext | null>(null);
     const audioStreamRef = useRef<MediaStream | null>(null);
+    const socketRef = useRef<WebSocket | null>(null);
+    const recognitionRef = useRef<any>(null);
+    const silenceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+    // Initialize Speech Recognition
+    useEffect(() => {
+        const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+        if (SpeechRecognition) {
+            recognitionRef.current = new SpeechRecognition();
+            recognitionRef.current.continuous = true;
+            recognitionRef.current.interimResults = false;
+            recognitionRef.current.lang = 'en-US';
+
+            recognitionRef.current.onresult = (event: any) => {
+                const transcript = event.results[event.results.length - 1][0].transcript;
+                if (transcript.trim()) {
+                    setInputText(transcript);
+                    // Automatically send after a short delay or handle in effect
+                }
+            };
+
+            recognitionRef.current.onerror = (event: any) => {
+                console.error("Speech recognition error:", event.error);
+                if (event.error === 'not-allowed') {
+                    stopCall();
+                }
+            };
+        }
+    }, []);
+
+    const speak = (text: string, audioBase64?: string) => {
+        // Always stop any robotic voice immediately
+        window.speechSynthesis.cancel();
+
+        if (audioBase64) {
+            // Play high quality Gemini audio (Aoede)
+            const audio = new Audio(`data:audio/wav;base64,${audioBase64}`);
+            audio.play().catch(e => console.error("Audio playback failed:", e));
+        } else if (!isCalling) {
+            // Only fallback to robotic voice if NOT in a call mode
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.rate = 1;
+            utterance.pitch = 1.1; // Slightly more natural pitch
+            window.speechSynthesis.speak(utterance);
+        }
+    };
 
     const startCall = async () => {
         try {
@@ -88,19 +134,142 @@ export const AiPage: React.FC = () => {
             audioContextRef.current = audioContext;
             setGlobalAnalyser(analyserNode);
             setIsCalling(true);
+
+            // Connect WebSocket
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const socket = new WebSocket(`${protocol}//${window.location.hostname}:8000/ws/agent/call/`);
+            socketRef.current = socket;
+
+            socket.onopen = () => {
+                console.log("Live Call Connected");
+                // Send initial context if needed
+                socket.send(JSON.stringify({ text: "Hello, I am ready to talk." }));
+            };
+
+            socket.onmessage = async (event) => {
+                if (event.data instanceof Blob) {
+                    const arrayBuffer = await event.data.arrayBuffer();
+                    playReceivedAudio(arrayBuffer);
+                } else {
+                    const data = JSON.parse(event.data);
+
+                    if (data.text) {
+                        setMessages(prev => {
+                            const newMsgs = [...prev];
+                            const last = newMsgs[newMsgs.length - 1];
+                            if (last && last.role === 'ai') {
+                                return [...newMsgs.slice(0, -1), { ...last, text: last.text + data.text }];
+                            }
+                            return [...newMsgs, { id: Date.now().toString(), role: 'ai', text: data.text }];
+                        });
+                    }
+
+                    if (data.tool) {
+                        setMessages(prev => [
+                            ...prev,
+                            {
+                                id: Date.now().toString(),
+                                role: 'ai',
+                                text: `⚡ Using ${data.tool.replace('_', ' ')}...`,
+                                properties: data.tool === "search_properties" ? data.result : undefined
+                            }
+                        ]);
+                        if (data.tool === "search_properties" && data.result && data.result.length > 0) {
+                            const mappedResults = data.result.map((r: any) => ({
+                                ...r,
+                                latitude: r.lat,
+                                longitude: r.lng
+                            }));
+                            // The useMemo for allProperties will pick these up from the messages state.
+                            if (mappedResults[0].latitude && mappedResults[0].longitude) {
+                                map?.panTo({ lat: mappedResults[0].latitude, lng: mappedResults[0].longitude });
+                            }
+                        }
+                    }
+                }
+            };
+
+            // Start Speech Recognition for UI visual feedback
+            if (recognitionRef.current) {
+                recognitionRef.current.onresult = (event: any) => {
+                    const transcript = event.results[event.results.length - 1][0].transcript;
+                    // Add user message to chat for unification
+                    setMessages(prev => {
+                        const last = prev[prev.length - 1];
+                        if (last && last.role === 'user' && !last.image) {
+                            return [...prev.slice(0, -1), { ...last, text: transcript }];
+                        }
+                        return [...prev, { id: Date.now().toString(), role: 'user', text: transcript }];
+                    });
+                };
+                recognitionRef.current.start();
+            }
+
+            // Setup audio input processing (ScriptProcessor)
+            const scriptNode = audioContext.createScriptProcessor(4096, 1, 1);
+            source.connect(scriptNode);
+            scriptNode.connect(audioContext.destination);
+
+            scriptNode.onaudioprocess = (e) => {
+                if (socket.readyState === WebSocket.OPEN && !isLoading) {
+                    const inputData = e.inputBuffer.getChannelData(0);
+                    const pcmData = new Int16Array(inputData.length);
+                    for (let i = 0; i < inputData.length; i++) {
+                        pcmData[i] = Math.max(-1, Math.min(1, inputData[i])) * 0x7FFF;
+                    }
+                    socket.send(pcmData.buffer);
+                }
+            };
         } catch (err) {
             console.error("Failed to access microphone:", err);
             alert("Please allow microphone access to use the voice feature.");
         }
     };
 
+    const nextStartTimeRef = useRef<number>(0);
+
+    const playReceivedAudio = (buffer: ArrayBuffer) => {
+        if (!audioContextRef.current) return;
+
+        const int16Data = new Int16Array(buffer);
+        const float32Data = new Float32Array(int16Data.length);
+        for (let i = 0; i < int16Data.length; i++) {
+            float32Data[i] = int16Data[i] / 0x7FFF;
+        }
+
+        const audioBuffer = audioContextRef.current.createBuffer(1, float32Data.length, 24000);
+        audioBuffer.getChannelData(0).set(float32Data);
+
+        const source = audioContextRef.current.createBufferSource();
+        source.buffer = audioBuffer;
+        source.connect(audioContextRef.current.destination);
+
+        const currentTime = audioContextRef.current.currentTime;
+        if (nextStartTimeRef.current < currentTime) {
+            nextStartTimeRef.current = currentTime;
+        }
+
+        source.start(nextStartTimeRef.current);
+        nextStartTimeRef.current += audioBuffer.duration;
+    };
+
     const stopCall = () => {
+        if (socketRef.current) {
+            socketRef.current.close();
+            socketRef.current = null;
+        }
         if (audioStreamRef.current) {
             audioStreamRef.current.getTracks().forEach(track => track.stop());
+            audioStreamRef.current = null;
         }
         if (audioContextRef.current) {
             audioContextRef.current.close();
+            audioContextRef.current = null;
         }
+        if (recognitionRef.current) {
+            try { recognitionRef.current.stop(); } catch (e) { }
+        }
+        window.speechSynthesis.cancel();
         setGlobalAnalyser(undefined);
         setIsCalling(false);
     };
@@ -116,6 +285,18 @@ export const AiPage: React.FC = () => {
             scrollToBottom();
         }
     }, [messages, isChatOpen]);
+
+    // Remove old silence detection effect as it's now in startCall
+    /*
+    useEffect(() => {
+        if (isCalling && inputText.trim() && !isLoading) {
+            const timeout = setTimeout(() => {
+                handleSendMessage();
+            }, 1000); 
+            return () => clearTimeout(timeout);
+        }
+    }, [inputText, isCalling]);
+    */
 
     // Collect all properties from chat history for markers
     const allProperties = useMemo(() => {
@@ -159,32 +340,52 @@ export const AiPage: React.FC = () => {
         }
     }, []);
 
-    const handleSendMessage = async () => {
-        if (!inputText.trim() && pinnedLocations.length === 0) return;
+    const handleSendMessage = async (textOverride?: string, audioData?: string) => {
+        const textToUse = textOverride !== undefined ? textOverride : inputText;
+        if (!textToUse.trim() && pinnedLocations.length === 0 && !audioData) return;
 
-        let displayMetrics = inputText;
+        let displayMetrics = textToUse;
         if (pinnedLocations.length > 0) {
             const tags = pinnedLocations.map(l => `[${l.label}]`).join(' ');
-            displayMetrics = `${tags} ${inputText}`;
+            displayMetrics = `${tags} ${textToUse}`;
         }
 
-        const userMsg: Message = {
-            id: Date.now().toString(),
-            role: 'user',
-            text: displayMetrics
-        };
+        // Only add user message to list if it's text or if we have a transcript
+        if (displayMetrics.trim() || !audioData) {
+            const userMsg: Message = {
+                id: Date.now().toString(),
+                role: 'user',
+                text: displayMetrics || "..."
+            };
+            setMessages(prev => [...prev, userMsg]);
+        }
 
-        setMessages(prev => [...prev, userMsg]);
         setInputText("");
-
         const locationsToSend = pinnedLocations.map(l => ({ lat: l.lat, lng: l.lng }));
-        setPinnedLocations([]);
-        setIsPinningMode(false); // Exit pinning mode if active
+
+        // Only clear pins if we actually send text/intent
+        if (textToUse.trim() || audioData) {
+            setPinnedLocations([]);
+            setIsPinningMode(false);
+        }
 
         setIsLoading(true);
 
         try {
-            const data = await aiService.chat(userMsg.text, locationsToSend);
+            const data = await aiService.chat(textToUse, locationsToSend, isCalling, audioData);
+
+            // Update the last user message with transcript if backend provided one and we were just "..."
+            if (audioData && data.intent_debug?.transcript) {
+                setMessages(prev => {
+                    const newMsgs = [...prev];
+                    const last = newMsgs[newMsgs.length - 1];
+                    if (last && last.role === 'user' && last.text === "...") {
+                        last.text = data.intent_debug.transcript;
+                    }
+                    return newMsgs;
+                });
+            }
+
             const aiMsg: Message = {
                 id: (Date.now() + 1).toString(),
                 role: 'ai',
@@ -192,13 +393,19 @@ export const AiPage: React.FC = () => {
                 properties: data.properties
             };
             setMessages(prev => [...prev, aiMsg]);
+
+            if (isCalling) {
+                speak(data.response, data.audio);
+            }
         } catch (error) {
+            console.error("Chat error:", error);
             const errorMsg: Message = {
                 id: (Date.now() + 1).toString(),
                 role: 'ai',
                 text: "I'm having trouble connecting to my brain right now."
             };
             setMessages(prev => [...prev, errorMsg]);
+            if (isCalling) speak(errorMsg.text);
         } finally {
             setIsLoading(false);
         }

@@ -3,6 +3,7 @@ import React from 'react';
 interface LiquidGlassProps {
     children: React.ReactNode;
     className?: string;
+    contentClassName?: string;
     onClick?: () => void;
     variant?: 'default' | 'large' | 'nav' | 'clear';
 }
@@ -10,6 +11,7 @@ interface LiquidGlassProps {
 export const LiquidGlass: React.FC<LiquidGlassProps> = ({
     children,
     className = '',
+    contentClassName = '',
     onClick,
     variant = 'default'
 }) => {
@@ -48,9 +50,10 @@ export const LiquidGlass: React.FC<LiquidGlassProps> = ({
 
             {/* Layer 3: Glass Content */}
             <div className={`
-        relative z-[3] flex items-center w-full gap-0 pl-0 pr-0 pt-0 pb-0
-        ${variant === 'nav' ? 'px-4 py-2' : 'p-[1rem_1.5rem_0.9rem]'}
-      `}>
+                relative z-[3] w-full
+                ${variant === 'nav' ? 'flex items-center px-4 py-2' : 'p-[1rem_1.5rem_0.9rem]'}
+                ${contentClassName}
+            `}>
                 {children}
             </div>
         </div>

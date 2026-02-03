@@ -7,6 +7,8 @@ import { AiPage } from './pages/AiPage';
 import { PropertyDetailPage } from './pages/PropertyDetailPage';
 import { LoginPage } from './pages/LoginPage';
 import { SellPage } from './pages/SellPage';
+import { ProfilePage } from './pages/ProfilePage';
+import { MyRentalsPage } from './pages/MyRentalsPage';
 
 import Aurora from './components/Aurora';
 
@@ -78,6 +80,8 @@ const App: React.FC = () => {
               <Route path="/rent" element={<ProtectedRoute><RentPage /></ProtectedRoute>} />
               <Route path="/sell" element={<ProtectedRoute><SellPage /></ProtectedRoute>} />
               <Route path="/ai" element={<ProtectedRoute><AiPage /></ProtectedRoute>} />
+              <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
+              <Route path="/my-rentals" element={<ProtectedRoute><MyRentalsPage /></ProtectedRoute>} />
               <Route path="/property/:id" element={<ProtectedRoute><PropertyDetailPage /></ProtectedRoute>} />
 
               {/* Fallback to login */}
